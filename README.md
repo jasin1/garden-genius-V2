@@ -1,8 +1,3 @@
-# React + Vite
+# Eindopdracht NOVI frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Welkom bij onze GardenGenius! Deze app is ontworpen als eindopdracht voor de opleiding Frontend Development bij NOVI Hogeschool. Het doel van deze applicatie is om tuinliefhebbers te helpen bij het plannen en onderhouden van hun droomtuinen met behulp van een intuïtieve gebruikersinterface en een uitgebreide database van plantinformatie.
