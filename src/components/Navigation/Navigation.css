@@ -10,21 +10,30 @@
 nav{
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    align-items: center;
+    padding: .2rem 2rem;
 }
 
 .logo-wrapper{
-    width: 160px;
+    width: 180px;
 }
 
 .nav-link {
     text-decoration: none;
     margin: 0 .3rem;
     padding: 0.5rem 1rem;
-    /*font-weight: bold;*/
+    font-weight: bold;
+    color: var(--color-black);
     font-size: .9rem;
 }
 
 .nav-link:hover {
     color: var(--color-orange);
 }
+
+.nav-profile{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+

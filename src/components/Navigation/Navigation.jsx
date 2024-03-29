@@ -7,7 +7,7 @@ function Navigation() {
     return (
         <nav>
             <div className="logo-wrapper">
-                <img src={logo} alt="GardenGenius Logo"/>
+                <NavLink to="/search" className="nav-link"><img src={logo} alt="GardenGenius Logo"/></NavLink>
             </div>
             <ul className="nav-links">
                 <li>
