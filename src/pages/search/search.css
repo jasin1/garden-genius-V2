@@ -49,3 +49,8 @@
 .search-input::placeholder{
     color: var(--color-gray);
 }
+
+.suggested{
+    background: var(--color-light-green);
+    padding: 3rem 4rem;
+}

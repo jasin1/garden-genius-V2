@@ -1,6 +1,9 @@
 import './search.css';
 import Navigation from "../../components/Navigation/Navigation.jsx";
-import SearchIcon from "../../assets/icon-search.svg"
+import PlantCard from "../../components/PlantCard/PlantCard.jsx"
+import Footer from "../../components/Footer/Footer.jsx";
+import SearchIcon from "../../assets/icon-search.svg";
+
 
 // import searchIcon from "/src/assets/icon-search.svg"
 
@@ -25,7 +28,11 @@ function Search() {
                 </header>
             </section>
 
-
+            <section className="suggested">
+                <h2>Suggested plants</h2>
+                <PlantCard/>
+            </section>
+            <Footer/>
         </main>
 
     );

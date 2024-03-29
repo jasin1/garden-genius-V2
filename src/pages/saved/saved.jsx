@@ -1,15 +1,16 @@
-import './about.css';
+import './saved.css';
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 
-function About(){
-    return(
+function saved() {
+    return (
         <main>
             <Navigation/>
-            <h1>About Page</h1>
+            <h1>Saved plants</h1>
             <Footer/>
         </main>
     );
+
 }
 
-export default About;
+export default saved;

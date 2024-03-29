@@ -16,6 +16,11 @@ function Navigation() {
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink to="/saved" className="nav-link">
+                        Saved Plants
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to="/profile" className="nav-link">
                         <div className="nav-profile">
                             <span>Login</span>
