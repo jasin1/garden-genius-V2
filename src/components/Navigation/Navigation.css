@@ -1,0 +1,30 @@
+/*--color-main-green: #284627;*/
+/*--color-secondary-green: #4F814E;*/
+/*--color-white: #FFFFFF;*/
+/*--color-black: #4C4C4C;*/
+/*--color-gray: #808080;*/
+/*--color-orange: #EE671C;*/
+/*--color-light-green: #E0E9DC;*/
+/*--color-btn-light-green: #D7EFD6;*/
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.logo-wrapper{
+    width: 160px;
+}
+
+.nav-link {
+    text-decoration: none;
+    margin: 0 .3rem;
+    padding: 0.5rem 1rem;
+    /*font-weight: bold;*/
+    font-size: .9rem;
+}
+
+.nav-link:hover {
+    color: var(--color-orange);
+}

@@ -1,15 +1,10 @@
 import './search.css'
+// import searchIcon from "/src/assets/icon-search.svg"
 
 function Search(){
     return(
-        <main>
-            <header>
-                <h1>Unleash the superpowers of plants</h1>
-                <div className="search-wrapper">
+        <h1>Unleash the superpowers of plants</h1>
 
-                </div>
-            </header>
-        </main>
     );
 }
 
