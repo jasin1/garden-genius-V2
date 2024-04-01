@@ -26,6 +26,7 @@
   --color-orange: #EE671C;
   --color-light-green: #E0E9DC;
   --color-btn-light-green: #D7EFD6;
+  --color-input-border: #bcc4bb;
 }
 
 * {
@@ -47,6 +48,11 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4{
@@ -86,4 +92,8 @@ button{
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
 }
+
+
+

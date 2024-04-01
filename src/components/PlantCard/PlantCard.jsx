@@ -1,16 +1,16 @@
 import './PlantCard.css';
-import plantImg from '../../assets/dummie-plant-01.jpg'
+// import plantImg from '../../assets/dummie-plant-01.jpg'
 
-function PlantCard() {
+function PlantCard({plantName, subName, image}) {
     return (
         <div className="card">
             <div className="card-img-wrapper">
-                <img src={plantImg} alt=""/>
+                <img src={image} alt=""/>
             </div>
             <div className="card-description">
                 <div className="plant-title">
-                    <h3>Plant name</h3>
-                    <p>nomen conservandum</p>
+                    <h3>{plantName}</h3>
+                    <p>{subName}</p>
                 </div>
 
                 <div className="plant-save">

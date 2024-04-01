@@ -1,25 +1,79 @@
 import './home.css';
-import mainImg from "../../assets/login-img.jpg";
-import Logo from "../../assets/main-logo.svg";
+import whiteLogo from "../../assets/white-logo.svg";
+import {useForm} from "react-hook-form";
 
 
-function Home(){
-    return(
+function Home() {
+    const {register, handleSubmit} = useForm();
+    return (
         <main>
             <section className="login-splash">
                 <div className="main-image-wrapper">
-                    <img className="main-image" src={mainImg} alt="main image for decoration"/>
+
+                    <div className="overlay">
+                        <div className="login-whitelogo-wrapper">
+                            <img src={whiteLogo} alt="main logo"/>
+                        </div>
+                        <p>Where your green oasis begins to bloom and your gardening dreams take root!</p>
+                    </div>
 
                 </div>
 
                 <div className="intro-container">
                     <div className="intro-wrapper">
-                        <header>
-                            <p><span>Welcome to</span></p>
-                            <img src={Logo} alt="main logo"/>
-                            <p><span>Pretium vel dui viverra rutrum. Laoreet tristique amet neque sit laoreet viverra.</span>
+                        <div className="intro-header">
+                            <h1 className="intro-welcome-txt">Begin your journey to a greener world</h1>
+
+                            <p>
+                                Our platform is your gateway to discovering the perfect plants for your garden oasis.
+                                Whether you are a seasoned gardener or just starting out, GardenGenius is here to help
+                                you
+                                bring your gardening dreams to life.
+                                <br/><br/>
+                                Join us today and let your green adventure begin!
                             </p>
-                        </header>
+                        </div>
+                        <div className="form-wrapper">
+                            <form onSubmit={handleSubmit((data) =>
+                            {console.log(data);})} >
+                                <div className="form-container">
+                                    <label htmlFor="name-filed">
+                                        Name
+                                        <input
+                                            type="text"
+                                            id="name-field"
+                                            placeholder="Enter your name"
+                                            {...register("name")}
+                                        />
+                                    </label>
+                                    <label htmlFor="email-field">
+                                        Email
+                                        <input
+                                            type="email"
+                                            id="email-field"
+                                            placeholder="Enter your email"
+                                            {...register("email")}
+                                        />
+                                    </label>
+                                    <label htmlFor="password-field">
+                                        password
+                                        <input
+                                            type="password"
+                                            id="password-field"
+                                            placeholder="Enter your password"
+                                            {...register("password")}
+                                        />
+                                    </label>
+                                    <div className="btn-wrapper">
+                                        <button className="submit-btn" type="submit">
+                                            Signup
+                                        </button>
+                                        <p>or</p>
+                                        <button className="btn-alt">Login</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </section>

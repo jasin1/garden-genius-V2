@@ -11,17 +11,19 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .2rem 2rem;
+    padding: 1.2rem 2rem;
 }
 
 .logo-wrapper{
     width: 180px;
 }
 
+.nav-links{
+    gap: 2.5rem;
+}
+
 .nav-link {
     text-decoration: none;
-    margin: 0 .3rem;
-    padding: 0.5rem 1rem;
     font-weight: bold;
     color: var(--color-black);
     font-size: .9rem;
@@ -34,6 +36,6 @@ nav{
 .nav-profile{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
 }
 

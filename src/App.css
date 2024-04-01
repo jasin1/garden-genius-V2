@@ -8,38 +8,3 @@
 /*  }*/
 /*}*/
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.login-splash{
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.main-image-wrapper{
-  height: 100%;
-  flex: 1;
-}
-
-.intro-container{
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.intro-wrapper{
-  /*border: 1px red solid;*/
-  text-align: center;
-}
-
-.intro-wrapper p{
-  color: var(--color-secondary-green);
-}
