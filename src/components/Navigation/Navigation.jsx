@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 function Navigation() {
     return (
         <nav>
-            <div className="logo-wrapper">
+            <div className="nav-logo-wrapper">
                 <NavLink to="/search" className="nav-link"><img src={logo} alt="GardenGenius Logo"/></NavLink>
             </div>
             <ul className="nav-links">

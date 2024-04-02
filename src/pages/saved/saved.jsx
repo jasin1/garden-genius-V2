@@ -5,9 +5,11 @@ import Footer from "../../components/Footer/Footer.jsx";
 function saved() {
     return (
         <main>
-            <Navigation/>
-            <h1>Saved plants</h1>
-            <Footer/>
+            <article>
+                <Navigation/>
+                <h1>Saved plants</h1>
+                <Footer/>
+            </article>
         </main>
     );
 

@@ -1,8 +1,12 @@
 import './notfound.css'
 
-function Notfound(){
-    return(
-        <h1>Oooops! Page not found</h1>
+function Notfound() {
+    return (
+        <main>
+            <article>
+                <h1>Oooops! Page not found</h1>
+            </article>
+        </main>
     );
 
 }

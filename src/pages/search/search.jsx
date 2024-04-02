@@ -14,50 +14,52 @@ import plantImg04 from '../../assets/dummie-plant-04.jpg';
 function Search() {
     return (
         <main>
-            <Navigation/>
-            <section className="search-container">
-                <header className="search-header">
-                    <h1 className="search-h1">Unleash the superpowers of plants</h1>
-                    <div className="search-bar">
-                        <div className="search-icon-wrapper">
-                            <img src={SearchIcon} alt="search icon"/>
+            <article>
+                <Navigation/>
+                <section className="search-container">
+                    <header className="search-header">
+                        <h1 className="search-h1">Unleash the superpowers of plants</h1>
+                        <div className="search-bar">
+                            <div className="search-icon-wrapper">
+                                <img src={SearchIcon} alt="search icon"/>
+                            </div>
+                            <input
+                                className="search-input"
+                                type="text"
+                                placeholder="Search for plants..."
+                            />
+                            <button className="search-btn">Search</button>
                         </div>
-                        <input
-                            className="search-input"
-                            type="text"
-                            placeholder="Search for plants..."
-                        />
-                        <button className="search-btn">Search</button>
-                    </div>
-                </header>
-            </section>
+                    </header>
+                </section>
 
-            <section className="suggested">
-                <h2>Suggested plants</h2>
-                <div className="grid">
-                    <PlantCard
-                        plantName="Plant Name"
-                        subName="a long plant subname weet je wel"
-                        image={plantImg01}
-                    />
-                    <PlantCard
-                        plantName="Plant Name"
-                        subName="a long plant subname weet je wel"
-                        image={plantImg02}
-                    />
-                    <PlantCard
-                        plantName="Plant Name"
-                        subName="a long plant subname weet je wel"
-                        image={plantImg03}
-                    />
-                    <PlantCard
-                        plantName="Plant Name"
-                        subName="a long plant subname weet je wel"
-                        image={plantImg04}
-                    />
-                </div>
-            </section>
-            <Footer/>
+                <section className="suggested">
+                    <h2>Suggested plants</h2>
+                    <div className="grid">
+                        <PlantCard
+                            plantName="Plant Name"
+                            subName="a long plant subname weet je wel"
+                            image={plantImg01}
+                        />
+                        <PlantCard
+                            plantName="Plant Name"
+                            subName="a long plant subname weet je wel"
+                            image={plantImg02}
+                        />
+                        <PlantCard
+                            plantName="Plant Name"
+                            subName="a long plant subname weet je wel"
+                            image={plantImg03}
+                        />
+                        <PlantCard
+                            plantName="Plant Name"
+                            subName="a long plant subname weet je wel"
+                            image={plantImg04}
+                        />
+                    </div>
+                </section>
+                <Footer/>
+            </article>
         </main>
 
     );
