@@ -10,14 +10,14 @@
     overflow: hidden;
 }
 
-.overlay{
 
-}
 
 .main-image-wrapper{
     height: 100%;
     flex: 1;
     background-image: url("../../assets/login-img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .overlay{
@@ -33,7 +33,7 @@
 
 .overlay p{
     font-size: 1.5rem;
-    max-width: 474px;
+    max-width: 496px;
     text-align: center;
     /*font-weight: 500;*/
 }
@@ -55,8 +55,8 @@
     /*border: 1px red solid;*/
     display: flex;
     flex-direction: column;
-    align-items: center;
-    max-width: 520px;
+    /*align-items: center;*/
+    /*max-width: 520px;*/
     /*padding: 1.5rem;*/
 }
 
@@ -76,7 +76,7 @@
 .intro-welcome-txt{
     /*display: block;*/
     color: var(--color-secondary-green);
-    text-align: center;
+    /*text-align: center;*/
     margin-bottom: 1.5rem;
     font-size: 2.5rem;
 }

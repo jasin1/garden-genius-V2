@@ -3,6 +3,7 @@ import Home from './pages/home/home.jsx';
 import Search from './pages/search/search.jsx';
 import About from './pages/about/about.jsx';
 import Saved from './pages/saved/saved.jsx';
+import Onboarding from "./pages/onboarding/onboarding.jsx";
 import {Routes, Route} from "react-router-dom";
 
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/search" element={<Search/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/saved" element={<Saved/>}/>
+                <Route path="/onboarding" element={<Onboarding/>}/>
 
             </Routes>
 

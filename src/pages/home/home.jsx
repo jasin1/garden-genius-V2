@@ -9,27 +9,24 @@ function Home() {
         <main>
             <section className="login-splash">
                 <div className="main-image-wrapper">
-
                     <div className="overlay">
                         <div className="login-whitelogo-wrapper">
                             <img src={whiteLogo} alt="main logo"/>
                         </div>
-                        <p>Where your green oasis begins to bloom and your gardening dreams take root!</p>
+                        <p>
+                            Our platform is your gateway to discovering the perfect plants for your garden oasis.
+                            Whether you are a seasoned gardener or just starting out, GardenGenius is here to help
+                            you bring your gardening dreams to life.
+                        </p>
                     </div>
-
                 </div>
 
                 <div className="intro-container">
                     <div className="intro-wrapper">
                         <div className="intro-header">
-                            <h1 className="intro-welcome-txt">Begin your journey to a greener world</h1>
+                            <h1 className="intro-welcome-txt">Sign up</h1>
 
                             <p>
-                                Our platform is your gateway to discovering the perfect plants for your garden oasis.
-                                Whether you are a seasoned gardener or just starting out, GardenGenius is here to help
-                                you
-                                bring your gardening dreams to life.
-                                <br/><br/>
                                 Join us today and let your green adventure begin!
                             </p>
                         </div>
