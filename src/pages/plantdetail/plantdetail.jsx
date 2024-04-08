@@ -5,7 +5,12 @@ import Footer from "../../components/Footer/Footer.jsx";
 import WateringIcon from "../../assets/icon-watering.svg";
 import SunIcon from "../../assets/icon-sun.svg";
 import CycleIcon from "../../assets/icon-cycle.svg";
-import Tangerine from "../../assets/dummie-plant-02.jpg"
+import Tangerine from "../../assets/dummie-plant-02.jpg";
+import plantImg01 from '../../assets/dummie-plant-01.jpg';
+import plantImg05 from '../../assets/dummie-plant-05.jpg';
+import plantImg03 from '../../assets/dummie-plant-03.jpg';
+import plantImg04 from '../../assets/dummie-plant-04.jpg';
+
 
 function plantdetail() {
     return (
@@ -79,6 +84,33 @@ function plantdetail() {
                                 </div>
 
                             </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="green-bg">
+                    <div className="container">
+                        <h2>Other Plants</h2>
+                        <div className="grid">
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg01}
+                            />
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg05}
+                            />
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg03}
+                            />
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg04}
+                            />
                         </div>
                     </div>
                 </section>

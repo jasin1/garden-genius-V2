@@ -58,22 +58,29 @@ body {
 
 main{
   width: 100%;
-  display: flex;
-  justify-content: center;
+  /*display: flex;*/
+  /*justify-content: center;*/
 }
 
 article{
-  max-width: 1440px;
+  width: 1440px;
 }
 
 section{
-  width: 1440px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .green-bg{
   background: var(--color-light-green);
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin-bottom: 3rem;
 }
 
 h1, h2, h3, h4{

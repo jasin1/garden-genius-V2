@@ -34,28 +34,30 @@ function Search() {
                 </section>
 
                 <section className="suggested">
-                    <h2>Suggested plants</h2>
-                    <div className="grid">
-                        <PlantCard
-                            plantName="Plant Name"
-                            subName="a long plant subname weet je wel"
-                            image={plantImg01}
-                        />
-                        <PlantCard
-                            plantName="Plant Name"
-                            subName="a long plant subname weet je wel"
-                            image={plantImg02}
-                        />
-                        <PlantCard
-                            plantName="Plant Name"
-                            subName="a long plant subname weet je wel"
-                            image={plantImg03}
-                        />
-                        <PlantCard
-                            plantName="Plant Name"
-                            subName="a long plant subname weet je wel"
-                            image={plantImg04}
-                        />
+                    <div className="container">
+                        <h2>Suggested plants</h2>
+                        <div className="grid">
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg01}
+                            />
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg02}
+                            />
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg03}
+                            />
+                            <PlantCard
+                                plantName="Plant Name"
+                                subName="a long plant subname weet je wel"
+                                image={plantImg04}
+                            />
+                        </div>
                     </div>
                 </section>
                 <Footer/>
