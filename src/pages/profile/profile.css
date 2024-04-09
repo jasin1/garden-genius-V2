@@ -1,12 +1,29 @@
 
 
 .hero{
+    /*position: relative;*/
+}
+
+.avatar-container{
     position: relative;
+    width: 100%;
 }
 
 .avatar-wrapper{
     width: 200px;
     position: absolute;
     left: 10%;
-    top: 60%;
+    top: -60%;
+}
+
+.block-top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+}
+
+.btn-wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: right;
 }

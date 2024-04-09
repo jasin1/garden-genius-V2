@@ -57,13 +57,13 @@ body {
 }
 
 main{
-  width: 100%;
+  /*width: 100%;*/
   /*display: flex;*/
   /*justify-content: center;*/
 }
 
 article{
-  width: 1440px;
+  /*width: 1440px;*/
 }
 
 section{
@@ -90,6 +90,7 @@ h1, h2, h3, h4{
 
 h1 {
   font-size: 3.2em;
+  margin-bottom: 1.5rem;
 }
 
 h2{
@@ -130,6 +131,12 @@ button{
 .btn-orange{
   background: var(--color-orange);
   color: var(--color-white);
+}
+
+.suggested{
+  background: var(--color-light-green);
+  padding: 3rem 4rem;
+  /*border: 1px solid red;*/
 }
 
 
