@@ -65,7 +65,6 @@ function Home() {
                                         <button className="submit-btn" type="submit">
                                             Signup
                                         </button>
-                                        <p>or</p>
                                         <button className="btn-alt">Login</button>
                                     </div>
                                 </div>

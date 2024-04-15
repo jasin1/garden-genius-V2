@@ -46,7 +46,6 @@ a:hover {
 }
 
 body {
-  margin: 0;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-synthesis: none;
@@ -61,6 +60,7 @@ main{
   /*display: flex;*/
   /*justify-content: center;*/
 }
+
 
 article{
   /*width: 1440px;*/
@@ -89,7 +89,7 @@ h1, h2, h3, h4{
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 3em;
   margin-bottom: 1.5rem;
 }
 
@@ -99,7 +99,8 @@ h2{
 }
 
 img {
-  width: 100%;
+  display: block;
+  max-width: 100%;
   height: auto;
 }
 
@@ -137,6 +138,43 @@ button{
   background: var(--color-light-green);
   padding: 3rem 4rem;
   /*border: 1px solid red;*/
+}
+
+/*------------media queries-------------*/
+
+@media screen and (max-width: 576px){
+  body {
+    font-size: 18px;
+  }
+
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .btn-wide {
+    padding: 0.8rem 8rem;
+  }
+
+
+}
+
+@media screen and (max-width: 900px){
+  section{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
 }
 
 
