@@ -1,14 +1,23 @@
+import {useState} from "react";
 import './Navigation.css';
 import logo from '../../assets/main-logo.svg';
 import {NavLink} from "react-router-dom";
 
 function Navigation() {
+    const [showMenu, setShowMenu] = useState(false);
+
+    const toggleMenu = () =>{
+        if(window.innerWidth <= 768){
+            setShowMenu(!showMenu);
+        }
+
+    }
     return (
         <nav>
             <div className="nav-logo-wrapper">
                 <NavLink to="/search" className="nav-link"><img src={logo} alt="GardenGenius Logo"/></NavLink>
             </div>
-            <ul className="nav-links">
+            <ul className={`nav-links ${showMenu ? 'active': ''}`}>
                 <li>
                     <NavLink to="/onboarding" className="nav-link">
                         About
@@ -32,6 +41,11 @@ function Navigation() {
                 </li>
 
             </ul>
+            <div className="burger-menu" onClick={toggleMenu}>
+                <div className="burger-line"></div>
+                <div className="burger-line"></div>
+                <div className="burger-line"></div>
+            </div>
 
         </nav>
     );

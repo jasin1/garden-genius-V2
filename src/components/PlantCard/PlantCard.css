@@ -10,7 +10,9 @@
     height: 160px;
     border-radius: 10px;
     margin-bottom: 1.5rem;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-description{
