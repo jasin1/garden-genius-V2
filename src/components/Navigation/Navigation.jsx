@@ -38,7 +38,7 @@ function Navigation() {
                         About
                     </NavLink>
                 </li>
-                <li className="saved-plants-link" data-count="0">
+                <li className="saved-plants-link" data-count="">
                     <NavLink to="/saved" className="nav-link">
                         <span>Saved Plants</span>
                     </NavLink>
