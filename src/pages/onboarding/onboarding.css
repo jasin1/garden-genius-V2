@@ -41,3 +41,31 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 1200px){
+    .main-onboarding{
+        background-image: none;
+    }
+
+}
+
+@media screen and (max-width: 768px){
+
+    .main-onboarding{
+        padding: 2.5rem;
+        height: auto;
+    }
+
+    .logo-wrapper{
+        margin-bottom: 1.5rem;
+    }
+
+    .onboarding-header p{
+        font-size: 1.2rem;
+    }
+
+    .onboarding-content p{
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}

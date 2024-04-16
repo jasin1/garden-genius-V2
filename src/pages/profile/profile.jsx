@@ -24,9 +24,9 @@ function profile() {
                                 et ut euismod lobortis faucibus vivamus sit magnis. Mi laoreet scelerisque scelerisque
                                 non amet purus. Penatibus ac nec eu vel malesuada nunc. </p>
                         </div>
-                        <div className="btn-wrapper">
-                            <button className="btn-orange">Log out</button>
-                        </div>
+                        {/*<div className="btn-wrapper">*/}
+                        {/*    <button className="btn-orange">Log out</button>*/}
+                        {/*</div>*/}
                     </div>
 
                     <div className="container">

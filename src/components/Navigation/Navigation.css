@@ -15,29 +15,44 @@ nav{
     position: relative;
 }
 
+.nav-links{
+    gap: 2.5rem;
+
+}
+
+
 .nav-links.active{
     background-color: var(--color-main-green);
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    padding: 1rem;
+    /*padding: 1rem;*/
     display: flex;
     flex-direction: column;
+    align-items: start;
+    justify-content: stretch;
     z-index: 999;
+    gap: 0;
 }
+
 
 .nav-links.active li{
     display: block;
+    border-bottom: 1px solid var(--color-light-green);
+    width: 100%;
+
+}
+
+.nav-links.active .userIcon-path{
+    fill: white;
 }
 
 .nav-logo-wrapper{
     width: 180px;
 }
 
-.nav-links{
-    gap: 2.5rem;
-}
+
 
 .burger-menu{
     display: none;
@@ -60,7 +75,20 @@ nav{
     gap: .5rem;
 }
 
+/*.userIcon-path{*/
+/*    fill: var(--color-orange)*/
+/*}*/
+
 @media screen and (max-width: 768px){
+
+    nav{
+        padding: 1rem 1rem;
+    }
+
+    .nav-logo-wrapper{
+        width: 280px;
+    }
+
 
     .nav-links{
         display: none;
@@ -69,7 +97,12 @@ nav{
 
     .nav-link{
         color: var(--color-white);
+        font-size: 2rem;
+        display: block;
+        width: 100%;
+        padding: 1rem;
     }
+
 
     .userIcon{
         fill: var(--color-white);

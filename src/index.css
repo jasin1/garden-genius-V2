@@ -24,7 +24,7 @@
   --color-black: #4C4C4C;
   --color-gray: #595959;
   --color-orange: #EE671C;
-  --color-light-green: #E0E9DC;
+  --color-light-green: rgba(224, 233, 220, 0.46);
   --color-btn-light-green: #D7EFD6;
   --color-input-border: #bcc4bb;
 }
@@ -141,6 +141,12 @@ button{
   background: var(--color-light-green);
   padding: 3rem 4rem;
   /*border: 1px solid red;*/
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.5rem;
 }
 
 /*------------media queries-------------*/

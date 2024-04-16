@@ -1,7 +1,6 @@
 import './App.css';
 import Home from './pages/home/home.jsx';
 import Search from './pages/search/search.jsx';
-import About from './pages/about/about.jsx';
 import Saved from './pages/saved/saved.jsx';
 import Profile from './pages/profile/profile.jsx';
 import Onboarding from "./pages/onboarding/onboarding.jsx";
@@ -17,7 +16,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/search" element={<Search/>}/>
-                <Route path="/about" element={<About/>}/>
                 <Route path="/saved" element={<Saved/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/onboarding" element={<Onboarding/>}/>

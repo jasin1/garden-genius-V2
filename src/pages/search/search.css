@@ -52,11 +52,7 @@
 
 
 
-.grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2.5rem;
-}
+
 
 .search-btn{
     height: 100%;
