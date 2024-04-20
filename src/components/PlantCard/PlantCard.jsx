@@ -1,9 +1,12 @@
 import './PlantCard.css';
 // import plantImg from '../../assets/dummie-plant-01.jpg'
 
-function PlantCard({plantName, subName, image}) {
+function PlantCard({plantName, subName, image, id}) {
+    console.log("Plant name:", plantName);
+    console.log("Sub name:", subName);
+    console.log("Image:", image);
     return (
-        <div className="card">
+        <div className="card" key={id}>
             <div className="card-img-wrapper">
                 <img src={image} alt=""/>
             </div>
