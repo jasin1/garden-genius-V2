@@ -6,26 +6,29 @@ import Navigation from "../../components/Navigation/Navigation.jsx";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx"
 import Footer from "../../components/Footer/Footer.jsx";
 import SearchBar from "../../components/SeachBar/SearchBar.jsx";
-// import plantImg01 from '../../assets/dummie-plant-01.jpg';
-// import plantImg02 from '../../assets/dummie-plant-02.jpg';
-// import plantImg03 from '../../assets/dummie-plant-03.jpg';
-// import plantImg04 from '../../assets/dummie-plant-04.jpg';
+
 
 
 // import searchIcon from "/src/assets/icon-search.svg"
 
 function Search() {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [error, setError] = useState('');
+    const Hardiness = "8a";
+
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490`);
-                setData(response.data);
-                console.log("Search results:", data);
+                const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&hardiness=${Hardiness}`);
+                setData(response.data.data);
+                console.log("normal results:", response.data.data);
             } catch (error) {
-                console.error("Error fetching data: ", error);
+                // console.error("Error fetching data: ", error.response.request.responseText);
+                console.error("Error fetching data: ", error.response.status);
+                setError('Het ophalen van de data is mislukt!')
+
             }
         }
 
@@ -33,11 +36,12 @@ function Search() {
 
     }, []);
 
+
     const handleSearch = async (searchTerm) => {
         try {
             const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&q=${searchTerm}`);
-            setSearchResults(response.data[0] || []);
-            console.log("Search result for plants: ", response.data);
+            setSearchResults(response.data.data || []);
+            console.log("Search result for plants: ", response.data.data);
         } catch (error) {
             console.error("Error searchin for plants:", error);
         }
@@ -63,22 +67,25 @@ function Search() {
                 <section className="suggested">
                     <div className="container">
                         <h2>Suggested plants</h2>
-                        <div className="testdata">
-                            {/*<button type="button" onClick={fetchData}>test data</button>*/}
-                        </div>
+
                         <div className="grid">
-                            {/*{searchResults && searchResults.map((plant) => (*/}
-                            {/*    <PlantCard*/}
+                            {error && <p>{error}</p>}
+                            {data && data.map((plant) => (
+                                <PlantCard
+                                    key={plant.id}
+                                    plantName={plant.common_name}
+                                    subName={plant.scientific_name.join(", ")}
+                                    image={plant.default_image && plant.default_image.small_url}
+                                />
+                            ))}
 
-                            {/*        key={plant.id}*/}
-                            {/*        plantName={plant.common_name}*/}
-                            {/*        subName={plant.scientific_name.join(", ")}*/}
-                            {/*        image={plant.default_image && plant.default_image.small_url}*/}
-                            {/*    />*/}
-                            {/*))}*/}
-                            <PlantCard
-                            />
-
+                        </div>
+                        <p>dummies</p>
+                        <div className="grid">
+                            <PlantCard />
+                            <PlantCard />
+                            <PlantCard />
+                            <PlantCard />
                         </div>
                     </div>
                 </section>
