@@ -5,6 +5,10 @@
     padding: .5rem;
 }
 
+.card-link{
+    cursor: pointer;
+}
+
 .card-img-wrapper{
     overflow: hidden;
     height: 160px;

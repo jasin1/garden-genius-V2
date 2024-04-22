@@ -19,7 +19,7 @@ function App() {
                 <Route path="/saved" element={<Saved/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/onboarding" element={<Onboarding/>}/>
-                <Route path="/plantdetail" element={<PlantDetail/>}/>
+                <Route path="/plantdetail/:id" element={<PlantDetail/>}/>
             </Routes>
 
 

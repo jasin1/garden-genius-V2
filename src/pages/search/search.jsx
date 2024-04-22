@@ -15,7 +15,7 @@ function Search() {
     const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState('');
-    const Hardiness = "8a";
+    const Hardiness = "1";
 
 
     useEffect(() => {
@@ -73,6 +73,7 @@ function Search() {
                             {data && data.map((plant) => (
                                 <PlantCard
                                     key={plant.id}
+                                    id={plant.id}
                                     plantName={plant.common_name}
                                     subName={plant.scientific_name.join(", ")}
                                     image={plant.default_image && plant.default_image.small_url}
@@ -80,13 +81,13 @@ function Search() {
                             ))}
 
                         </div>
-                        <p>dummies</p>
-                        <div className="grid">
-                            <PlantCard />
-                            <PlantCard />
-                            <PlantCard />
-                            <PlantCard />
-                        </div>
+                        {/*<p>dummies</p>*/}
+                        {/*<div className="grid">*/}
+                        {/*    <PlantCard />*/}
+                        {/*    <PlantCard />*/}
+                        {/*    <PlantCard />*/}
+                        {/*    <PlantCard />*/}
+                        {/*</div>*/}
                     </div>
                 </section>
                 <Footer/>

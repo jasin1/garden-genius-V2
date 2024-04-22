@@ -1,5 +1,9 @@
 import './plantdetail.css';
 import Navigation from "../../components/Navigation/Navigation.jsx";
+import {useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import WateringIcon from "../../assets/icon-watering.svg";
@@ -7,29 +11,51 @@ import SunIcon from "../../assets/icon-sun.svg";
 import CycleIcon from "../../assets/icon-cycle.svg";
 import Tangerine from "../../assets/dummie-plant-02.jpg";
 import plantImg01 from '../../assets/dummie-plant-01.jpg';
-import plantImg05 from '../../assets/dummie-plant-05.jpg';
-import plantImg03 from '../../assets/dummie-plant-03.jpg';
-import plantImg04 from '../../assets/dummie-plant-04.jpg';
+// import plantImg05 from '../../assets/dummie-plant-05.jpg';
+// import plantImg03 from '../../assets/dummie-plant-03.jpg';
+// import plantImg04 from '../../assets/dummie-plant-04.jpg';
 
 
 function plantdetail() {
+    const {id} = useParams();
+    const [plant, setPlant] = useState();
+    const [error, setError] = useState();
+
+    useEffect(() => {
+        async function fetchDetailData() {
+            try {
+                const response = await axios.get(`https://perenual.com/api/species/details/${id}?key=sk-nmqA66236192cd6f53490`);
+                console.log('detail response', response.data);
+                setPlant(response.data);
+            } catch (e) {
+                console.error(e);
+                setError('Het ophalen van plant detail data is mislukt')
+            }
+        }
+        fetchDetailData();
+
+    }, [id]);
+
     return (
         <main>
             <article>
                 <Navigation/>
                 <section className="green-bg">
+                    {error ? (
+                        <p>{error}</p>):(
                     <div className="plant-detail-wrapper">
                         <div className="plant-top">
                             <div className="back-btn">Back</div>
                             <button className="btn-orange">Add to your collection</button>
                         </div>
+                        {plant && (
                         <div className="plant-detail-container">
                             <div className="plant-image-wrapper">
-                                <img src={Tangerine} alt="main plant image"/>
+                                <img src={plant.default_image.medium_url} alt="main plant image"/>
                             </div>
                             <div className="plant-detail-content">
-                                <h1>Tangerine</h1>
-                                <p><span className="plant-sub-name">Citrus reticulata</span></p>
+                                <h1>{plant.common_name}</h1>
+                                <p><span className="plant-sub-name">{plant.scientific_name}</span></p>
                                 <p><span className="plant-alsoknown">
                                     Also Known As - American Persimmon, Eastern Persimmon
                                 </span>
@@ -37,17 +63,7 @@ function plantdetail() {
 
                                 <div className="plant-txt">
                                     <p>
-                                        Id sit odio ac integer tincidunt pellentesque id consectetur consequat.
-                                        Elementum
-                                        sodales et ut euismod lobortis faucibus vivamus sit magnis. Mi laoreet
-                                        scelerisque
-                                        scelerisque non amet purus. Penatibus ac nec eu vel malesuada nunc. Malesuada
-                                        egestas quis ultrices nibh non sapien ut. Semper nisi dictumst sollicitudin
-                                        suspendisse sed tortor tortor dui egestas.<br/><br/>
-
-                                        Lacus amet urna egestas orci rhoncus feugiat. A et ut tincidunt tempor cursus.
-                                        Consectetur libero facilisi hac massa neque praesent dui. Duis blandit ornare
-                                        faucibus orci in varius amet. Aliquam sed eget elit eu mattis.
+                                        {plant.description}
                                     </p>
                                 </div>
 
@@ -58,7 +74,7 @@ function plantdetail() {
                                         </div>
                                         <div className="plant-feature-txt-wrapper">
                                             <p><span className="plant-feature-name">Watering</span></p>
-                                            <p><span className="plant-feature-option">Frequent</span></p>
+                                            <p><span className="plant-feature-option">{plant.watering}</span></p>
                                         </div>
                                     </div>
 
@@ -78,14 +94,16 @@ function plantdetail() {
                                         </div>
                                         <div className="plant-feature-txt-wrapper">
                                             <p><span className="plant-feature-name">Cycle</span></p>
-                                            <p><span className="plant-feature-option">Perennial</span></p>
+                                            <p><span className="plant-feature-option">{plant.cycle}</span></p>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+                        )}
                     </div>
+                    )}
                 </section>
                 <section className="green-bg">
                     <div className="container">
@@ -95,21 +113,6 @@ function plantdetail() {
                                 plantName="Plant Name"
                                 subName="a long plant subname weet je wel"
                                 image={plantImg01}
-                            />
-                            <PlantCard
-                                plantName="Plant Name"
-                                subName="a long plant subname weet je wel"
-                                image={plantImg05}
-                            />
-                            <PlantCard
-                                plantName="Plant Name"
-                                subName="a long plant subname weet je wel"
-                                image={plantImg03}
-                            />
-                            <PlantCard
-                                plantName="Plant Name"
-                                subName="a long plant subname weet je wel"
-                                image={plantImg04}
                             />
                         </div>
                     </div>
