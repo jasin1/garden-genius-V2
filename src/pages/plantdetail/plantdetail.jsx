@@ -9,14 +9,13 @@ import Footer from "../../components/Footer/Footer.jsx";
 import WateringIcon from "../../assets/icon-watering.svg";
 import SunIcon from "../../assets/icon-sun.svg";
 import CycleIcon from "../../assets/icon-cycle.svg";
-import Tangerine from "../../assets/dummie-plant-02.jpg";
 import plantImg01 from '../../assets/dummie-plant-01.jpg';
-// import plantImg05 from '../../assets/dummie-plant-05.jpg';
-// import plantImg03 from '../../assets/dummie-plant-03.jpg';
-// import plantImg04 from '../../assets/dummie-plant-04.jpg';
+import placeholderImage from '../../assets/placeholder-plant.jpg';
 
 
-function plantdetail() {
+
+
+function Plantdetail() {
     const {id} = useParams();
     const [plant, setPlant] = useState();
     const [error, setError] = useState();
@@ -123,4 +122,4 @@ function plantdetail() {
     )
 }
 
-export default plantdetail;
+export default Plantdetail;

@@ -37,6 +37,7 @@ function SearchBar({onSearch, placeholder, initialValue}){
             />
             <button className="search-btn" onClick={handleSearch}>Search</button>
         </div>
+
     )
 }
 

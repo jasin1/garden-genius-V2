@@ -1,0 +1,12 @@
+.heart{
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.heart:hover{
+    transform: scale(1.1);
+}
+
+.heart.active path{
+    fill: var(--color-orange);
+}

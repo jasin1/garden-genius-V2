@@ -1,11 +1,12 @@
 import './search.css';
 import axios from "axios";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx"
 import Footer from "../../components/Footer/Footer.jsx";
 import SearchBar from "../../components/SeachBar/SearchBar.jsx";
+import {PlantContext} from '../../context/PlantContext.jsx';
 
 
 
@@ -16,6 +17,9 @@ function Search() {
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState('');
     const Hardiness = "1";
+
+    const myPlantContext = useContext(PlantContext);
+    console.log('Inhoud Plant context in search page',myPlantContext.likedPlantIds);
 
 
     useEffect(() => {
@@ -61,6 +65,7 @@ function Search() {
                             placeholder="Search for plants..."
 
                         />
+                        <p>for example search for banana       </p>
                     </header>
                 </section>
 
