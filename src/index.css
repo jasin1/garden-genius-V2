@@ -23,10 +23,12 @@
   --color-white: #FFFFFF;
   --color-black: #4C4C4C;
   --color-gray: #595959;
+  --color-light-gray: #DEDEDE;
   --color-orange: #EE671C;
   --color-light-green: rgba(224, 233, 220, 0.46);
   --color-btn-light-green: #D7EFD6;
   --color-input-border: #bcc4bb;
+  --color-border-gray: #869D86;
 }
 
 * {
@@ -138,6 +140,12 @@ button{
 .btn-orange{
   background: var(--color-orange);
   color: var(--color-white);
+}
+
+.btn-grey{
+  background: var(--color-light-gray);
+  color: var(--color-black);
+  border: 1px solid var(--color-border-gray);
 }
 
 .suggested{

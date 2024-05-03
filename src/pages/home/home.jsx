@@ -1,10 +1,19 @@
 import './home.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useContext} from "react";
 
 
 function Home() {
     const {register, handleSubmit} = useForm();
+    const { login } = useContext(AuthContext);
+
+    function handleFormSubmit(){
+        // e.preventDefault();
+        login();
+    }
+
     return (
         <main>
             <section className="login-splash">
@@ -24,15 +33,14 @@ function Home() {
                 <div className="intro-container">
                     <div className="intro-wrapper">
                         <div className="intro-header">
-                            <h1 className="intro-welcome-txt">Sign up</h1>
+                            <h1 className="intro-welcome-txt">Welcome back!</h1>
 
                             <p>
-                                Join us today and let your green adventure begin!
+                                Let's get our hands dirty and dive back into the green world of gardening together!
                             </p>
                         </div>
                         <div className="form-wrapper">
-                            <form onSubmit={handleSubmit((data) =>
-                            {console.log(data);})} >
+                            <form onSubmit={handleSubmit(handleFormSubmit)} >
                                 <div className="form-container">
                                     <label htmlFor="name-filed">
                                         Name
@@ -62,10 +70,14 @@ function Home() {
                                         />
                                     </label>
                                     <div className="btn-wrapper">
-                                        <button className="submit-btn" type="submit">
-                                            Signup
+                                        <button type="sumbit" className="btn-alt">Login</button>
+                                    </div>
+                                    <div className="register-wrapper">
+                                        <p>If this is your first time, please </p>
+                                        <button className="btn-orange">
+                                            Register
                                         </button>
-                                        <button className="btn-alt">Login</button>
+
                                     </div>
                                 </div>
                             </form>
@@ -78,3 +90,4 @@ function Home() {
 }
 
 export default Home;
+

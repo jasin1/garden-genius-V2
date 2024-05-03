@@ -111,6 +111,7 @@ label input{
     width: 100%;
     margin-top: 1.5rem;
     gap: 1.2rem;
+    margin-bottom: 2rem;
 }
 
 .submit-btn{
@@ -161,4 +162,10 @@ label input{
     .intro-welcome-txt{
         font-size: 2rem;
     }
+}
+
+.register-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }

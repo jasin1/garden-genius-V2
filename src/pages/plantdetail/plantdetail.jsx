@@ -1,8 +1,8 @@
 import './plantdetail.css';
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import {useParams} from "react-router-dom";
-import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
+// import {Link} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
@@ -10,15 +10,22 @@ import WateringIcon from "../../assets/icon-watering.svg";
 import SunIcon from "../../assets/icon-sun.svg";
 import CycleIcon from "../../assets/icon-cycle.svg";
 import plantImg01 from '../../assets/dummie-plant-01.jpg';
-import placeholderImage from '../../assets/placeholder-plant.jpg';
-
-
+import placeholderImage from '../../assets/placeholder-plant.jpg'
+import {PlantContext} from '../../context/PlantContext.jsx';
 
 
 function Plantdetail() {
+    const {likedPlantIds,likePlant, unlikedPlant} = useContext(PlantContext);
     const {id} = useParams();
     const [plant, setPlant] = useState();
     const [error, setError] = useState();
+    const numericId = parseInt(id, 10);
+    const isLiked = likedPlantIds.includes(numericId);
+    const [buttonText, setButtonText] = useState(isLiked ? "Remove from collection" : "Add to collection");
+
+
+
+    console.log('gelikte planten', likedPlantIds);
 
     useEffect(() => {
         async function fetchDetailData() {
@@ -32,8 +39,21 @@ function Plantdetail() {
             }
         }
         fetchDetailData();
+        console.log('huidige id ',id);
 
     }, [id]);
+
+    const handleButtonClick = () =>{
+        if(isLiked){
+            unlikedPlant(numericId);
+            setButtonText("Add to collection");
+        }else{
+            likePlant(numericId);
+            setButtonText("Remove from collection");
+        }
+    }
+
+
 
     return (
         <main>
@@ -44,13 +64,13 @@ function Plantdetail() {
                         <p>{error}</p>):(
                     <div className="plant-detail-wrapper">
                         <div className="plant-top">
-                            <div className="back-btn">Back</div>
-                            <button className="btn-orange">Add to your collection</button>
+                            {/*<div className="back-btn">Back</div>*/}
+                            <button className={isLiked ? 'btn-grey' :'btn-orange'} onClick={handleButtonClick}>{buttonText}</button>
                         </div>
                         {plant && (
                         <div className="plant-detail-container">
                             <div className="plant-image-wrapper">
-                                <img src={plant.default_image.medium_url} alt="main plant image"/>
+                                <img src={plant && plant.default_image ? plant.default_image.medium_url : placeholderImage} alt="main plant image"/>
                             </div>
                             <div className="plant-detail-content">
                                 <h1>{plant.common_name}</h1>
@@ -83,7 +103,15 @@ function Plantdetail() {
                                         </div>
                                         <div className="plant-feature-txt-wrapper">
                                             <p><span className="plant-feature-name">Sun</span></p>
-                                            <p><span className="plant-feature-option">Full Sun</span></p>
+                                            <p>
+                                                {plant.sunlight.map((item, index)=>(
+                                                <span key={index} className="plant-feature-option">
+                                                    {item}
+                                                    {index < plant.sunlight.length -1 && ", "}
+                                                </span>
+
+                                                ))}
+                                            </p>
                                         </div>
                                     </div>
 

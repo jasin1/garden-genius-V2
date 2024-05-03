@@ -9,7 +9,6 @@ import SearchBar from "../../components/SeachBar/SearchBar.jsx";
 import {PlantContext} from '../../context/PlantContext.jsx';
 
 
-
 // import searchIcon from "/src/assets/icon-search.svg"
 
 function Search() {
@@ -18,8 +17,8 @@ function Search() {
     const [error, setError] = useState('');
     const Hardiness = "1";
 
-    const myPlantContext = useContext(PlantContext);
-    console.log('Inhoud Plant context in search page',myPlantContext.likedPlantIds);
+    const {likedPlantIds} = useContext(PlantContext);
+    console.log('Inhoud Plant context in search page', likedPlantIds);
 
 
     useEffect(() => {
@@ -38,7 +37,7 @@ function Search() {
 
         fetchData();
 
-    }, []);
+    }, [likedPlantIds]);
 
 
     const handleSearch = async (searchTerm) => {
@@ -65,33 +64,50 @@ function Search() {
                             placeholder="Search for plants..."
 
                         />
-                        <p>for example search for banana       </p>
+                        <p>for example search for banana </p>
                     </header>
                 </section>
 
                 <section className="suggested">
                     <div className="container">
-                        <h2>Suggested plants</h2>
-
+                        <h2>{searchResults.length > 0 ? 'Search results' : 'Suggested plants'}</h2>
                         <div className="grid">
                             {error && <p>{error}</p>}
-                            {data && data.map((plant) => (
-                                <PlantCard
-                                    key={plant.id}
-                                    id={plant.id}
-                                    plantName={plant.common_name}
-                                    subName={plant.scientific_name.join(", ")}
-                                    image={plant.default_image && plant.default_image.small_url}
-                                />
-                            ))}
-
+                            {searchResults.length > 0 ? (
+                                searchResults.map((plant) => (
+                                    <PlantCard
+                                        key={plant.id}
+                                        id={plant.id}
+                                        plantName={plant.common_name}
+                                        subName={plant.scientific_name.join(", ")}
+                                        image={plant.default_image && plant.default_image.small_url}
+                                    />
+                                ))
+                            ) : (
+                                data.map((plant) => (
+                                    <PlantCard
+                                        key={plant.id}
+                                        id={plant.id}
+                                        plantName={plant.common_name}
+                                        subName={plant.scientific_name.join(", ")}
+                                        image={plant.default_image && plant.default_image.small_url}
+                                    />
+                                ))
+                            )}
                         </div>
-                        {/*<p>dummies</p>*/}
+
                         {/*<div className="grid">*/}
-                        {/*    <PlantCard />*/}
-                        {/*    <PlantCard />*/}
-                        {/*    <PlantCard />*/}
-                        {/*    <PlantCard />*/}
+                        {/*    {error && <p>{error}</p>}*/}
+                        {/*    {data && data.map((plant) => (*/}
+                        {/*        <PlantCard*/}
+                        {/*            key={plant.id}*/}
+                        {/*            id={plant.id}*/}
+                        {/*            plantName={plant.common_name}*/}
+                        {/*            subName={plant.scientific_name.join(", ")}*/}
+                        {/*            image={plant.default_image && plant.default_image.small_url}*/}
+                        {/*        />*/}
+                        {/*    ))}*/}
+
                         {/*</div>*/}
                     </div>
                 </section>

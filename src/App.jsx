@@ -8,6 +8,8 @@ import PlantDetail from "./pages/plantdetail/plantdetail.jsx";
 import {Routes, Route} from "react-router-dom";
 
 
+
+
 function App() {
 
 
@@ -27,4 +29,4 @@ function App() {
     )
 }
 
-export default App
+export default App;

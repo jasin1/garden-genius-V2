@@ -7,8 +7,18 @@ import plantImg01 from "../../assets/dummie-plant-01.jpg";
 import plantImg02 from "../../assets/dummie-plant-02.jpg";
 import plantImg03 from "../../assets/dummie-plant-03.jpg";
 import plantImg04 from "../../assets/dummie-plant-04.jpg";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useContext} from "react";
 
-function profile() {
+function Profile() {
+
+    const { logout} = useContext(AuthContext);
+
+    function handleLogOut(e){
+        e.preventDefault();
+        logout();
+    }
+
     return (
         <main>
             <article>
@@ -24,6 +34,7 @@ function profile() {
                                 et ut euismod lobortis faucibus vivamus sit magnis. Mi laoreet scelerisque scelerisque
                                 non amet purus. Penatibus ac nec eu vel malesuada nunc. </p>
                         </div>
+                        <button className="btn-orange" onClick={handleLogOut}>Logout</button>
                         {/*<div className="btn-wrapper">*/}
                         {/*    <button className="btn-orange">Log out</button>*/}
                         {/*</div>*/}
@@ -61,4 +72,4 @@ function profile() {
     )
 }
 
-export default profile;
+export default Profile;
