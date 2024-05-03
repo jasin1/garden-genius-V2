@@ -5,6 +5,7 @@ import Saved from './pages/saved/saved.jsx';
 import Profile from './pages/profile/profile.jsx';
 import Onboarding from "./pages/onboarding/onboarding.jsx";
 import PlantDetail from "./pages/plantdetail/plantdetail.jsx";
+import Login from "./pages/login/login.jsx";
 import {Routes, Route} from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/onboarding" element={<Onboarding/>}/>
                 <Route path="/plantdetail/:id" element={<PlantDetail/>}/>
+                <Route path="/login" element={<Login/>}/>
             </Routes>
 
 

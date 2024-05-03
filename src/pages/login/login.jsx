@@ -1,29 +1,35 @@
-import './home.css';
+import './login.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useContext} from "react";
 import axios from "axios";
 
 
-function Home() {
-    const {register, handleSubmit} = useForm();
+function Login() {
 
+    const {register, handleSubmit} = useForm();
+    const {login} = useContext(AuthContext);
 
     async function handleFormSubmit(data) {
         console.log('formulier gegevens: ', data);
+
         try {
-            const response = await axios.post('https://api.datavortex.nl/gardengenius/users', data, {
+            const response = await axios.post('https://api.datavortex.nl/gardengenius/users/authenticate', {
+                "username": data.username,
+                "password": data.password
+
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Api-Key': 'gardengenius:5jLE5O1NAeo3qWOhGKuQ'
                 }
-
             });
-            console.log('Registratie succesvol: ', response.data);
+            console.log('Login succesvol: ', response.data.jwt);
+        login(response.data.jwt);
         } catch (error) {
-            console.error('Registratiefout: ', error)
+            console.error('login fout: ', error);
         }
-
-
     }
 
     return (
@@ -45,11 +51,10 @@ function Home() {
                 <div className="intro-container">
                     <div className="intro-wrapper">
                         <div className="intro-header">
-                            <h1 className="intro-welcome-txt">Sign up!</h1>
+                            <h1 className="intro-welcome-txt">Welcome back!</h1>
 
                             <p>
-                                Embark on your green journey with! Sign up today and discover a world of botanical
-                                beauty.
+                                Get our hands dirty and dive back into the green world of gardening together!
                             </p>
                         </div>
                         <div className="form-wrapper">
@@ -83,12 +88,12 @@ function Home() {
                                         />
                                     </label>
                                     <div className="btn-wrapper">
-                                        <button type="submit" className="btn-alt">Sign up now</button>
+                                        <button type="submit" className="btn-alt">Login</button>
                                     </div>
                                     <div className="register-wrapper">
-                                        <p>Already an account? </p>
+                                        <p>If this is your first time, please </p>
                                         <button className="btn-orange">
-                                            Login
+                                            Register
                                         </button>
 
                                     </div>
@@ -100,7 +105,7 @@ function Home() {
             </section>
         </main>
     );
+
 }
 
-export default Home;
-
+export default Login;
