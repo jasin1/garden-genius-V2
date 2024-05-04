@@ -1,12 +1,14 @@
 import './search.css';
 import axios from "axios";
 import {useState, useEffect, useContext} from "react";
+import {PlantContext} from '../../context/PlantContext.jsx';
 
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx"
 import Footer from "../../components/Footer/Footer.jsx";
 import SearchBar from "../../components/SeachBar/SearchBar.jsx";
-import {PlantContext} from '../../context/PlantContext.jsx';
+import Dropdown from "../../components/Dropdown/Dropdown.jsx";
+import countries from "../../assets/countries.json";
 
 
 // import searchIcon from "/src/assets/icon-search.svg"
@@ -15,6 +17,9 @@ function Search() {
     const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState('');
+
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [hardinessZones, setHardinessZones] = useState([]);
     const Hardiness = "1";
 
     const {likedPlantIds} = useContext(PlantContext);
@@ -51,6 +56,17 @@ function Search() {
         console.log("Search term :", searchTerm)
     }
 
+    const handleCountryChange = (countryName) =>{
+        const selectedCountryObject = countries.find(
+            (country) => country.name === countryName
+        )
+
+        setSelectedCountry(selectedCountryObject);
+
+        setHardinessZones(selectedCountryObject ? selectedCountryObject.zones : [])
+
+    };
+
 
     return (
         <main>
@@ -65,6 +81,11 @@ function Search() {
 
                         />
                         <p>for example search for banana </p>
+                        <Dropdown
+                            options={countries.map((country) => country.name)}
+                            onSelect={handleCountryChange}
+                            selectedOption={selectedCountry ? selectedCountry.name : "Choose a country"}
+                        />
                     </header>
                 </section>
 

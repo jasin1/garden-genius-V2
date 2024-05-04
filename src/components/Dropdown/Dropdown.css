@@ -1,0 +1,36 @@
+.custom-select{
+    position: relative;
+    display: inline-block;
+}
+
+.select-selected{
+    background-color: #f1f1f1;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.select-items {
+    position: absolute;
+    display: none;
+    color: var(--color-black);
+    background-color: #fff;
+    width: calc(100% - 2px);
+    max-height: 120px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1;
+}
+
+.select-items div{
+    padding:8px 16px;
+    cursor: pointer;
+}
+
+.select-items div:hover{
+    background-color: #ddd;
+}
+
+.select-items.show{
+    display: block;
+}
