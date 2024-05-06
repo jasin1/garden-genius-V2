@@ -1,11 +1,13 @@
 import './home.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 
 function Home() {
     const {register, handleSubmit} = useForm();
+    const navigate = useNavigate();
 
 
     async function handleFormSubmit(data) {
@@ -24,6 +26,10 @@ function Home() {
         }
 
 
+    }
+
+    function handleNavigate(){
+        navigate('/login');
     }
 
     return (
@@ -87,7 +93,7 @@ function Home() {
                                     </div>
                                     <div className="register-wrapper">
                                         <p>Already an account? </p>
-                                        <button className="btn-orange">
+                                        <button className="btn-orange" onClick={handleNavigate}>
                                             Login
                                         </button>
 

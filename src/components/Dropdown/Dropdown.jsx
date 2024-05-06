@@ -1,9 +1,9 @@
 import './Dropdown.css';
 import {useState} from "react";
 
-function Dropdown({ options }){
+function Dropdown({ options, onSelect }){
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedCountry, setSelectedCountry] = useState("Choose an country");
+    const [selectedCountry, setSelectedCountry] = useState("Choose a country");
 
     const toggleDropdown = () =>{
         setIsOpen(!isOpen);
@@ -12,6 +12,9 @@ function Dropdown({ options }){
     const handleOptionClick = (option) =>{
         setSelectedCountry(option);
         setIsOpen(false);
+
+        console.log("selected option: ", option)
+        onSelect(option);
     }
 
     return(

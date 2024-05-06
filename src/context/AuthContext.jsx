@@ -1,17 +1,21 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useEffect, useState, useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import isTokenValid from "../helpers/istokenvalid.js";
+import {PlantContext} from './PlantContext.jsx';
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
+    const { likedPlantIds } = useContext(PlantContext);
+
     const [Auth, setAuth] = useState({
         isAuth: false,
         user: {},
         status: 'pending',
     });
+
 
     useEffect(()=>{
         const token = localStorage.getItem('token');
@@ -32,6 +36,17 @@ function AuthContextProvider({children}) {
 
     const navigate = useNavigate();
 
+    async function savePlantsToAPI(username, userInfo) {
+        try {
+            const response = await axios.put(
+                `https://api.datavortex.nl/gardengenius/users/${username}`,
+                { info: JSON.stringify(likedPlantIds), userInfo }
+            );
+            console.log("Plants saved to API:", response.data);
+        } catch (error) {
+            console.error("Error saving plants to API:", error);
+        }
+    }
 
     async function login(token) {
         localStorage.setItem('token', token);
@@ -48,6 +63,9 @@ function AuthContextProvider({children}) {
                 }
             )
 
+            // meesturen van planten
+            await savePlantsToAPI(response.data.username, response.data.info);
+
             setAuth({
                 isAuth: true,
                 user: {
@@ -58,6 +76,7 @@ function AuthContextProvider({children}) {
                 status: 'done',
             });
             console.log('authContext response ',response);
+            navigate('/search');
 
         } catch (e) {
             console.error('login error: ', e);
@@ -80,10 +99,12 @@ function AuthContextProvider({children}) {
         navigate('/');
     }
 
+
     const AuthData = {
         isAuth: Auth.isAuth,
         login: login,
         logout: logout,
+        savePlantsToAPI: savePlantsToAPI,
     };
 
     return (

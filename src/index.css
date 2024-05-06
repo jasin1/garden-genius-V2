@@ -25,10 +25,11 @@
   --color-gray: #595959;
   --color-light-gray: #DEDEDE;
   --color-orange: #EE671C;
-  --color-light-green: rgba(224, 233, 220, 0.46);
+  --color-light-green: rgb(224, 233, 220);
   --color-btn-light-green: #D7EFD6;
   --color-input-border: #bcc4bb;
   --color-border-gray: #869D86;
+  --color-warning: #FD2020;
 }
 
 * {

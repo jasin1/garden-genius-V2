@@ -17,21 +17,37 @@ function Search() {
     const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState('');
+    const [isSearching, setIsSearching] = useState(false);
+    const [InputSearch, setInputSearch] = useState('');
+    const [noResults, setNoResults] = useState(false);
 
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [hardinessZones, setHardinessZones] = useState([]);
-    const Hardiness = "1";
+    // const Hardiness = "1";
 
     const {likedPlantIds} = useContext(PlantContext);
     console.log('Inhoud Plant context in search page', likedPlantIds);
+
+    const handleCountryChange = (countryName) => {
+        const selectedCountryObject = countries.find(
+            (country) => country.name === countryName
+        )
+        setSelectedCountry(selectedCountryObject);
+        setHardinessZones(selectedCountryObject ? selectedCountryObject.zones : [])
+        console.log("Selected country:", selectedCountryObject);
+
+    };
 
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&hardiness=${Hardiness}`);
+                const hardinessQuery = selectedCountry ? selectedCountry.zones.join(",") : "";
+                const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&hardiness=${hardinessQuery}`);
                 setData(response.data.data);
                 console.log("normal results:", response.data.data);
+                // console.log("hardiness zones", hardinessQuery);
+                // console.log('Hardiness ',hardinessZones);
             } catch (error) {
                 // console.error("Error fetching data: ", error.response.request.responseText);
                 console.error("Error fetching data: ", error.response.status);
@@ -42,30 +58,23 @@ function Search() {
 
         fetchData();
 
-    }, [likedPlantIds]);
+    }, [likedPlantIds, hardinessZones]);
 
 
     const handleSearch = async (searchTerm) => {
+        setIsSearching(!!searchTerm.trim());
+        setInputSearch(searchTerm);
         try {
             const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&q=${searchTerm}`);
-            setSearchResults(response.data.data || []);
-            console.log("Search result for plants: ", response.data.data);
+            const searchResults = response.data.data || [];
+            setSearchResults(searchResults);
+            console.log("Search result for plants: ", searchResults);
+            setNoResults(searchResults.length === 0);
         } catch (error) {
-            console.error("Error searchin for plants:", error);
+            console.error("Error searching for plants:", error);
         }
         console.log("Search term :", searchTerm)
     }
-
-    const handleCountryChange = (countryName) =>{
-        const selectedCountryObject = countries.find(
-            (country) => country.name === countryName
-        )
-
-        setSelectedCountry(selectedCountryObject);
-
-        setHardinessZones(selectedCountryObject ? selectedCountryObject.zones : [])
-
-    };
 
 
     return (
@@ -80,18 +89,36 @@ function Search() {
                             placeholder="Search for plants..."
 
                         />
-                        <p>for example search for banana </p>
-                        <Dropdown
-                            options={countries.map((country) => country.name)}
-                            onSelect={handleCountryChange}
-                            selectedOption={selectedCountry ? selectedCountry.name : "Choose a country"}
-                        />
+                        <div className="indicator-txt-wrapper">
+                            <p>Need inspiration? Give <span>banana</span> a try! </p>
+                        </div>
                     </header>
                 </section>
 
                 <section className="suggested">
                     <div className="container">
-                        <h2>{searchResults.length > 0 ? 'Search results' : 'Suggested plants'}</h2>
+                        <div className="indicator-header">
+
+                            <h2 className={noResults ? 'no-result' : ''}>
+                                {noResults ? (
+                                    `No results for ${InputSearch}`
+                                ) : (
+                                    `${isSearching ? 'Search results' : 'Suggested plants'}`
+                                )}
+                                {InputSearch && !noResults && (
+                                    <span className="searchTerm"> for {InputSearch}</span>
+                                )}
+                            </h2>
+
+                            {!isSearching && (
+
+                                <Dropdown
+                                    options={countries.map((country) => country.name)}
+                                    onSelect={handleCountryChange}
+                                    selectedOption={selectedCountry ? selectedCountry.name : "Choose a country"}
+                                />
+                            )}
+                        </div>
                         <div className="grid">
                             {error && <p>{error}</p>}
                             {searchResults.length > 0 ? (
@@ -116,20 +143,6 @@ function Search() {
                                 ))
                             )}
                         </div>
-
-                        {/*<div className="grid">*/}
-                        {/*    {error && <p>{error}</p>}*/}
-                        {/*    {data && data.map((plant) => (*/}
-                        {/*        <PlantCard*/}
-                        {/*            key={plant.id}*/}
-                        {/*            id={plant.id}*/}
-                        {/*            plantName={plant.common_name}*/}
-                        {/*            subName={plant.scientific_name.join(", ")}*/}
-                        {/*            image={plant.default_image && plant.default_image.small_url}*/}
-                        {/*        />*/}
-                        {/*    ))}*/}
-
-                        {/*</div>*/}
                     </div>
                 </section>
                 <Footer/>

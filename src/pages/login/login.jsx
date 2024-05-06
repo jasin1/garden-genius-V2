@@ -1,15 +1,20 @@
 import './login.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {useContext} from "react";
 import axios from "axios";
+
+
 
 
 function Login() {
 
     const {register, handleSubmit} = useForm();
     const {login} = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
     async function handleFormSubmit(data) {
         console.log('formulier gegevens: ', data);
@@ -30,6 +35,10 @@ function Login() {
         } catch (error) {
             console.error('login fout: ', error);
         }
+    }
+
+    function handleNavigate(){
+        navigate('/');
     }
 
     return (
@@ -92,7 +101,7 @@ function Login() {
                                     </div>
                                     <div className="register-wrapper">
                                         <p>If this is your first time, please </p>
-                                        <button className="btn-orange">
+                                        <button className="btn-orange" onClick={handleNavigate}>
                                             Register
                                         </button>
 

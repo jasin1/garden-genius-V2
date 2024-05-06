@@ -34,6 +34,11 @@ function Navigation() {
             </div>
             <ul className={`nav-links ${showMenu ? 'active': ''}`}>
                 <li>
+                    <NavLink to="/search" className="nav-link">
+                        Home
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to="/onboarding" className="nav-link">
                         About
                     </NavLink>
