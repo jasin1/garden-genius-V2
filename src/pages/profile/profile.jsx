@@ -14,10 +14,7 @@ function Profile() {
 
     const { logout} = useContext(AuthContext);
 
-    function handleLogOut(e){
-        e.preventDefault();
-        logout();
-    }
+
 
     return (
         <main>
@@ -34,10 +31,7 @@ function Profile() {
                                 et ut euismod lobortis faucibus vivamus sit magnis. Mi laoreet scelerisque scelerisque
                                 non amet purus. Penatibus ac nec eu vel malesuada nunc. </p>
                         </div>
-                        <button className="btn-orange" onClick={handleLogOut}>Logout</button>
-                        {/*<div className="btn-wrapper">*/}
-                        {/*    <button className="btn-orange">Log out</button>*/}
-                        {/*</div>*/}
+
                     </div>
 
                     <div className="container">

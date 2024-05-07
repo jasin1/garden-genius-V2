@@ -58,7 +58,7 @@ function Search() {
 
         fetchData();
 
-    }, [likedPlantIds, hardinessZones]);
+    }, [likedPlantIds, selectedCountry, searchResults]);
 
 
     const handleSearch = async (searchTerm) => {

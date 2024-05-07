@@ -149,6 +149,18 @@ button{
   border: 1px solid var(--color-border-gray);
 }
 
+.btn-arrow{
+  color: var(--color-main-green);
+  background: none;
+  display: flex;
+  gap: .5rem;
+  font-weight: bold;
+}
+
+.btn-arrow:hover{
+  color: var(--color-orange);
+}
+
 .suggested{
   background: var(--color-light-green);
   padding: 3rem 4rem;

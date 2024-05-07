@@ -70,6 +70,14 @@ nav{
     color: var(--color-orange);
 }
 
+.navActive{
+    color: var(--color-orange);
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+
+
 .nav-link:hover .userIcon-path{
     fill: var(--color-orange);
 }
@@ -100,6 +108,7 @@ nav{
     display: flex;
     align-items: center;
     gap: .5rem;
+    cursor: pointer;
 }
 
 /*.userIcon-path{*/
