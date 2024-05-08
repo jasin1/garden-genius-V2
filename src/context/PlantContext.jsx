@@ -1,19 +1,33 @@
-import {createContext, useState} from "react";
+import {createContext, useState, useContext} from "react";
+import {AuthContext} from "./AuthContext.jsx";
 // import axios from "axios";
 
 export const PlantContext = createContext({});
 
 function PlantContextProvider({children}) {
     const [LikedPlantIds, setLikedPlantIds] = useState([]);
+    const {user, updateUserInfo} = useContext(AuthContext);
+
 
     const likePlant = (plantId) => {
-        setLikedPlantIds((prevLikedPlantIds) => [...prevLikedPlantIds, plantId]);
+        setLikedPlantIds((prevLikedPlantIds) => {
+            const updatedLikedPlantIds = [...prevLikedPlantIds, plantId];
+
+            updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+            return updatedLikedPlantIds;
+        });
+
     };
 
     const unlikedPlant = (plantId) => {
-        setLikedPlantIds((prevLikedPlantIds) => prevLikedPlantIds.filter((id) => id !== plantId));
-    };
+        setLikedPlantIds((prevLikedPlantIds) => {
+           const updatedLikedPlantIds = prevLikedPlantIds.filter((id) => id !== plantId);
 
+            updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+            return updatedLikedPlantIds;
+        });
+
+    };
 
 
     const data = {

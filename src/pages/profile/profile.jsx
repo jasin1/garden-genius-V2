@@ -12,8 +12,12 @@ import {useContext} from "react";
 
 function Profile() {
 
-    const { logout} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const userName = user ? user.username : null;
 
+
+    console.log("user object: ", user);
+    console.log("username is ", userName);
 
 
     return (
@@ -26,7 +30,11 @@ function Profile() {
                 <section className="suggested">
                     <div className="block-top">
                         <div className="heading-block">
-                            <h1>Stephanie S.</h1>
+                            {userName ?(
+                                <h1>Welcome, {userName}!</h1>
+                            ): (
+                                <h1>Please log in to view your profile</h1>
+                            )}
                             <p>Id sit odio ac integer tincidunt pellentesque id consectetur consequat. Elementum sodales
                                 et ut euismod lobortis faucibus vivamus sit magnis. Mi laoreet scelerisque scelerisque
                                 non amet purus. Penatibus ac nec eu vel malesuada nunc. </p>
