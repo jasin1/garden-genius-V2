@@ -3,12 +3,12 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import isTokenValid from "../helpers/istokenvalid.js";
-// import {PlantContext} from './PlantContext.jsx';
+
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
-    // const { likedPlantIds } = useContext(PlantContext);
+
 
 
     const [Auth, setAuth] = useState({
@@ -17,19 +17,26 @@ function AuthContextProvider({children}) {
         status: 'pending',
     });
 
-    async function updateUserInfo(username, userInfo) {
+    async function updateUserInfo(userInfo) {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.put(
-                `https://api.datavortex.nl/gardengenius/users/${username}`,
-                {info: JSON.stringify(userInfo)},
+                `https://api.datavortex.nl/gardengenius/users/${Auth.user.username}`,
+                {
+                    info: JSON.stringify(userInfo)
+                },
                 {headers: {Authorization: `Bearer ${token}`}}
             );
             console.log("User information updated successfully:", response.data.info);
+            console.log('updateUserInfo user ',Auth.user.username);
+            console.log('updateUserInfo IDS ',userInfo);
+
+
         } catch (error) {
             console.error("Error updating user information:", error);
         }
     }
+
 
 
     const navigate = useNavigate();
@@ -71,9 +78,6 @@ function AuthContextProvider({children}) {
 
             if (response.data && response.data.username && response.data.email) {
 
-                // meesturen van planten
-                // await savePlantsToAPI(response.data.username, response.data.info);
-
                 setAuth({
                     isAuth: true,
                     user: {
@@ -101,6 +105,29 @@ function AuthContextProvider({children}) {
 
     }
 
+    async function getUserInfo() {
+        try {
+            const token = localStorage.getItem('token');
+            const username = Auth.user.username;
+            const response = await axios.get(
+                `https://api.datavortex.nl/gardengenius/users/${username}/info`,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+            // return response.data;
+            const userInfo = response.data;
+            const plantIds = userInfo.map(id => id);
+
+            return plantIds;
+
+        } catch (error) {
+            console.error("Error retrieving user information:", error);
+        }
+    }
+
+
+
     function logout() {
         console.log('User logged out');
         setAuth({
@@ -112,13 +139,15 @@ function AuthContextProvider({children}) {
     }
 
 
+
+
     const AuthData = {
         isAuth: Auth.isAuth,
         user: Auth.user,
         login: login,
         logout: logout,
         updateUserInfo: updateUserInfo,
-        // savePlantsToAPI: savePlantsToAPI,
+        getUserInfo: getUserInfo,
     };
 
     return (

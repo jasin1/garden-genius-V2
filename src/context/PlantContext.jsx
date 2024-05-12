@@ -6,14 +6,17 @@ export const PlantContext = createContext({});
 
 function PlantContextProvider({children}) {
     const [LikedPlantIds, setLikedPlantIds] = useState([]);
-    const {user, updateUserInfo} = useContext(AuthContext);
+    const { updateUserInfo } = useContext(AuthContext);
 
 
     const likePlant = (plantId) => {
         setLikedPlantIds((prevLikedPlantIds) => {
             const updatedLikedPlantIds = [...prevLikedPlantIds, plantId];
 
-            updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+
+            // updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+            updateUserInfo(updatedLikedPlantIds);
+
             return updatedLikedPlantIds;
         });
 
@@ -23,7 +26,9 @@ function PlantContextProvider({children}) {
         setLikedPlantIds((prevLikedPlantIds) => {
            const updatedLikedPlantIds = prevLikedPlantIds.filter((id) => id !== plantId);
 
-            updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+            // updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+            updateUserInfo(updatedLikedPlantIds);
+
             return updatedLikedPlantIds;
         });
 
