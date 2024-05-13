@@ -6,7 +6,7 @@ export const PlantContext = createContext({});
 
 function PlantContextProvider({children}) {
     const [LikedPlantIds, setLikedPlantIds] = useState([]);
-    const { updateUserInfo } = useContext(AuthContext);
+    const {updateUserInfo} = useContext(AuthContext);
 
 
     const likePlant = (plantId) => {
@@ -22,15 +22,25 @@ function PlantContextProvider({children}) {
 
     };
 
-    const unlikedPlant = (plantId) => {
-        setLikedPlantIds((prevLikedPlantIds) => {
-           const updatedLikedPlantIds = prevLikedPlantIds.filter((id) => id !== plantId);
+    const unlikedPlant = async (plantId) => {
+        try {
 
-            // updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
-            updateUserInfo(updatedLikedPlantIds);
+            setLikedPlantIds((prevLikedPlantIds) => {
+                const updatedLikedPlantIds = prevLikedPlantIds.filter((id) => id !== plantId);
 
-            return updatedLikedPlantIds;
-        });
+
+                // updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
+                updateUserInfo(updatedLikedPlantIds);
+
+                return updatedLikedPlantIds;
+            });
+
+            await updateUserInfo();
+
+
+        } catch (error) {
+            console.error('Error updating user info', error);
+        }
 
     };
 

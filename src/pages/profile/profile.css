@@ -25,3 +25,7 @@
 .plant-header{
     margin-bottom: 1.5rem;
 }
+
+.coloredTxt{
+    color: var(--color-secondary-green);
+}

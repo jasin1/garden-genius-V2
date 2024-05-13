@@ -9,6 +9,7 @@ export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
 
+    const [Info, setInfo ] = useState([]);
 
 
     const [Auth, setAuth] = useState({
@@ -25,18 +26,22 @@ function AuthContextProvider({children}) {
                 {
                     info: JSON.stringify(userInfo)
                 },
-                {headers: {Authorization: `Bearer ${token}`}}
+                {
+                    headers: {
+                        "content-type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
             );
             console.log("User information updated successfully:", response.data.info);
-            console.log('updateUserInfo user ',Auth.user.username);
-            console.log('updateUserInfo IDS ',userInfo);
+            console.log('updateUserInfo user ', Auth.user.username);
+            console.log('updateUserInfo IDS ', userInfo);
 
 
         } catch (error) {
             console.error("Error updating user information:", error);
         }
     }
-
 
 
     const navigate = useNavigate();
@@ -112,12 +117,17 @@ function AuthContextProvider({children}) {
             const response = await axios.get(
                 `https://api.datavortex.nl/gardengenius/users/${username}/info`,
                 {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: {
+                        "content-type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
                 }
             );
             // return response.data;
             const userInfo = response.data;
             const plantIds = userInfo.map(id => id);
+
+            setInfo(plantIds);
 
             return plantIds;
 
@@ -125,7 +135,6 @@ function AuthContextProvider({children}) {
             console.error("Error retrieving user information:", error);
         }
     }
-
 
 
     function logout() {
@@ -139,8 +148,6 @@ function AuthContextProvider({children}) {
     }
 
 
-
-
     const AuthData = {
         isAuth: Auth.isAuth,
         user: Auth.user,
@@ -148,6 +155,7 @@ function AuthContextProvider({children}) {
         logout: logout,
         updateUserInfo: updateUserInfo,
         getUserInfo: getUserInfo,
+        Info: Info,
     };
 
     return (

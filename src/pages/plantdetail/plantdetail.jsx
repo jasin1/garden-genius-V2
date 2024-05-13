@@ -1,6 +1,6 @@
 import './plantdetail.css';
 import Navigation from "../../components/Navigation/Navigation.jsx";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {PlantContext} from '../../context/PlantContext.jsx';
 import axios from "axios";
@@ -22,8 +22,11 @@ function Plantdetail() {
     const numericId = parseInt(id, 10);
     const isLiked = likedPlantIds.includes(numericId);
     const [buttonText, setButtonText] = useState(isLiked ? "Remove from collection" : "Add to collection");
+    const navigate = useNavigate();
 
-    // const history = useHistory();
+    const goBack = ()=>{
+        navigate(-1);
+    }
 
 
     console.log('gelikte planten', likedPlantIds);
@@ -69,7 +72,7 @@ function Plantdetail() {
                         <p>{error}</p>) : (
                         <div className="plant-detail-wrapper">
                             <div className="plant-top">
-                                <button className="back-btn btn-arrow">
+                                <button className="back-btn btn-arrow" onClick={goBack}>
                                     <Arrow pathClassName="svg-path-color"/>
                                     <p>Back</p>
                                 </button>
