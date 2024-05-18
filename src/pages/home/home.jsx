@@ -92,7 +92,7 @@ function Home() {
                                         <button type="submit" className="btn-alt">Sign up now</button>
                                     </div>
                                     <div className="register-wrapper">
-                                        <p>Already an account? </p>
+                                        <p>Already have an account? </p>
                                         <button className="btn-orange" onClick={handleNavigate}>
                                             Login
                                         </button>

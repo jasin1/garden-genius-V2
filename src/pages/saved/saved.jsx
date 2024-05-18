@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx";
 import {PlantContext} from '../../context/PlantContext.jsx';
 import Hero3 from "../../assets/hero-bg-03.jpg";
+import emptyPot from "../../assets/leegpotje.svg";
 import {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
@@ -48,28 +49,6 @@ function Saved() {
 
     }, [likedPlantIds]);
 
-    // useEffect(() => {
-    //     const fetchSavedPlants = async () => {
-    //         try {
-    //             setIsLoading(true);
-    //             const plantRequests = likedPlantIds.map((id) =>
-    //                 axios.get(`https://perenual.com/api/species/details/${id}?key=sk-nmqA66236192cd6f53490`));
-    //
-    //             const responses = await Promise.all(plantRequests);
-    //             const plantData = responses.map((response) => response.data);
-    //
-    //             setSavedPlants(plantData);
-    //             setIsLoading(false);
-    //         } catch (error) {
-    //             console.log('Error fetching saved plants: ', error);
-    //             setIsLoading(false);
-    //         }
-    //     };
-    //
-    //     fetchSavedPlants();
-    // }, [Info, likedPlantIds]);
-
-
 
 
     return (
@@ -84,7 +63,15 @@ function Saved() {
                         <h2>Saved Plants</h2>
                         {isLoading ? (
                             <div>Loading...</div>
-                        ) : (
+                        ) : savedPlants.length === 0 ?(
+                            <div className="NoPlants">
+                                <div className="potWrapper">
+                                <img src={emptyPot} alt=""/>
+                                </div>
+                            <p>No saved plants, start collecting your favorite plants!</p>
+                            </div>
+                            ):
+                            (
                             <div className="grid">
                                 {savedPlants && savedPlants.map((plant) => (
                                     <PlantCard

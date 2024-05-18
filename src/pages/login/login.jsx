@@ -63,7 +63,7 @@ function Login() {
                             <h1 className="intro-welcome-txt">Welcome back!</h1>
 
                             <p>
-                                Get our hands dirty and dive back into the green world of gardening together!
+                                Let&apos;s get our hands dirty and dive back into the green world of gardening together!
                             </p>
                         </div>
                         <div className="form-wrapper">

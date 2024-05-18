@@ -3,8 +3,16 @@
     transition: transform 0.2s ease;
 }
 
+.heart path{
+    transition: fill 0.2s ease;
+}
+
 .heart:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
+}
+
+.heart path:hover{
+    fill: var(--color-orange);
 }
 
 .heart.active path{
