@@ -8,8 +8,8 @@ Om deze applicatie te kunnen runnen, heb je het volgende nodig:
 
 - Node.js (versie 14 of hoger)
 - npm (versie 6 of hoger)
-- Een API key van Perenual (deze wordt meegeleverd in de handleiding)
-- Een werkende backend die de gebruikersauthenticatie beheert (zoals beschreven in de projectdocumentatie)
+- Een API key van [Perenual.com](https://perenual.com/docs/api) 
+- Een werkende backend die de gebruikersauthenticatie beheert 
 
 ## Installatie-instructies
 
@@ -23,6 +23,10 @@ Volg de onderstaande stappen om de applicatie lokaal op je machine te installere
 2. Installeer de benodigde dependencies:
 Zorg ervoor dat je Node.js en npm geïnstalleerd hebt. Daarna kun je de dependencies installeren met:
    npm install
+
+   API key: sk-nmqA66236192cd6f53490
+
+
 
 
 3. Start de development server:
