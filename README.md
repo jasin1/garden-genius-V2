@@ -1,6 +1,8 @@
 # GardenGenius
 
-GardenGenius is een webapplicatie waarmee gebruikers hun favoriete planten kunnen opslaan en beheren. Gebruikers kunnen inloggen, planten liken en hun opgeslagen planten bekijken. De applicatie maakt gebruik van de API van NOVI voor authenticatie en de API van Perenual voor plantgegevens. 
+GardenGenius is een webapplicatie waarmee gebruikers hun favoriete planten kunnen opslaan en beheren. Gebruikers kunnen inloggen, planten liken en hun opgeslagen planten bekijken. De applicatie maakt gebruik van de API van NOVI voor authenticatie en de API van Perenual voor plantgegevens.
+
+https://github.com/jasin1/novi-eindopdracht-gardenGenius
 
 ## Benodigdheden
 
