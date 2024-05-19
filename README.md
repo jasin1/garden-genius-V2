@@ -27,9 +27,7 @@ Zorg ervoor dat je Node.js en npm geïnstalleerd hebt. Daarna kun je de dependen
 
    npm install
 
-   API key: **sk-nmqA66236192cd6f53490**
-
-
+   
 
 
 3. Start de development server:
@@ -45,6 +43,7 @@ Gebruik de volgende inloggegevens om toegang te krijgen tot de applicatie:
 - Gebruikersnaam: Jasin
 - Email: jasin.tairaidrissi@gmail.com
 - Wachtwoord: gardengenius1!
+- API key: **sk-nmqA66236192cd6f53490**
 
 ### Toelichting 
 De installatiehandleiding bevat alle noodzakelijke informatie die een ontwikkelaar nodig heeft om de applicatie lokaal te installeren en te runnen. Het begint met een overzicht van de functionaliteit en een screenshot van de applicatie. Vervolgens geeft het een lijst van benodigdheden, gedetailleerde installatie-instructies en inloggegevens voor testaccounts. Deze handleiding zorgt ervoor dat zelfs een ontwikkelaar zonder ervaring binnen het frontend-landschap de applicatie succesvol kan opzetten en gebruiken.
