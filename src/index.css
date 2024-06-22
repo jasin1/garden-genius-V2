@@ -7,9 +7,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /*color-scheme: light dark;*/
-  /*color: rgba(255, 255, 255, 0.87);*/
-  /*background-color: #242424;*/
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -109,7 +107,6 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: cover;
-  /*object-position: 50% 50%;*/
 }
 
 ul{
@@ -141,7 +138,6 @@ button{
 
 .btn-wide:hover{
   background: var(--color-orange);
-  /*color: var(--color-white);*/
 }
 
 .btn-orange{
@@ -201,7 +197,6 @@ button{
 .suggested{
   background: var(--color-light-green);
   padding: 3rem 4rem;
-  /*border: 1px solid red;*/
 }
 
 .grid{
