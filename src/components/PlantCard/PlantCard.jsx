@@ -46,7 +46,7 @@ function PlantCard({plantName, subName, image, id}) {
                 <div className="card" key={id}>
                     <div className="card-img-wrapper">
                         {image ? (
-                            <img src={image} alt=""/>
+                            <img src={image} alt="Plant Thumbnail"/>
                         ) : (
                             <img src={placeholderImage} alt="placeholder"/>
                         )}

@@ -5,7 +5,7 @@ function Footer(){
     return(
         <footer>
             <div className="footer-logo-wrapper">
-                <img src={WhiteLogo} alt=""/>
+                <img src={WhiteLogo} alt="GardenGenius White Logo"/>
             </div>
         </footer>
     );

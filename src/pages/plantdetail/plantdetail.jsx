@@ -101,7 +101,7 @@ function Plantdetail() {
                                         <div className="plant-features">
                                             <div className="plant-feature">
                                                 <div className="plant-icon-wrapper">
-                                                    <img src={WateringIcon} alt=""/>
+                                                    <img src={WateringIcon} alt="Plant Watering Icon"/>
                                                 </div>
                                                 <div className="plant-feature-txt-wrapper">
                                                     <p><span className="plant-feature-name">Watering</span></p>
@@ -112,7 +112,7 @@ function Plantdetail() {
 
                                             <div className="plant-feature">
                                                 <div className="plant-icon-wrapper">
-                                                    <img src={SunIcon} alt=""/>
+                                                    <img src={SunIcon} alt="Sun Icon"/>
                                                 </div>
                                                 <div className="plant-feature-txt-wrapper">
                                                     <p><span className="plant-feature-name">Sun</span></p>
@@ -130,7 +130,7 @@ function Plantdetail() {
 
                                             <div className="plant-feature">
                                                 <div className="plant-icon-wrapper">
-                                                    <img src={CycleIcon} alt=""/>
+                                                    <img src={CycleIcon} alt="Cycling Icon"/>
                                                 </div>
                                                 <div className="plant-feature-txt-wrapper">
                                                     <p><span className="plant-feature-name">Cycle</span></p>
