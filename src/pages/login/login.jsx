@@ -1,4 +1,3 @@
-import './login.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
@@ -101,7 +100,7 @@ function Login() {
                                     </div>
                                     <div className="register-wrapper">
                                         <p>If this is your first time, please </p>
-                                        <button className="btn-orange" onClick={handleNavigate}>
+                                        <button className="btn-orange" type="button" onClick={handleNavigate}>
                                             Register
                                         </button>
 

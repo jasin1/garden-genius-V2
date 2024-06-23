@@ -10,7 +10,6 @@
 .search-header{
     display: flex;
     flex-direction: column;
-    /*max-width: 840px;*/
 }
 
 .search-h1{

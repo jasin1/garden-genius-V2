@@ -93,7 +93,7 @@ function Home() {
                                     </div>
                                     <div className="register-wrapper">
                                         <p>Already have an account? </p>
-                                        <button className="btn-orange" onClick={handleNavigate}>
+                                        <button className="btn-orange" type="button" onClick={handleNavigate}>
                                             Login
                                         </button>
 

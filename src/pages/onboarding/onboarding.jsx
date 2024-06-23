@@ -40,7 +40,7 @@ function onboarding() {
                             </p>
                             <div className="button-wrapper">
                                 <Link to="/search">
-                                    <button className="btn-wide">Start</button>
+                                    <button className="btn-wide" type="button">Start</button>
                                 </Link>
                             </div>
 

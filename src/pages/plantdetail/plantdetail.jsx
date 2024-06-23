@@ -78,7 +78,7 @@ function Plantdetail() {
                                 </button>
 
                                 <button className={isLiked ? 'btn-grey' : 'btn-orange'}
-                                        onClick={handleButtonClick}>{buttonText}</button>
+                                        type="button" onClick={handleButtonClick}>{buttonText}</button>
                             </div>
                             {plant && (
                                 <div className="plant-detail-container">
@@ -145,18 +145,6 @@ function Plantdetail() {
                         </div>
                     )}
                 </section>
-                {/*<section className="green-bg">*/}
-                {/*    <div className="container">*/}
-                {/*        <h2>Other Plants</h2>*/}
-                {/*        <div className="grid">*/}
-                {/*            <PlantCard*/}
-                {/*                plantName="Plant Name"*/}
-                {/*                subName="a long plant subname weet je wel"*/}
-                {/*                image={plantImg01}*/}
-                {/*            />*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</section>*/}
                 <Footer/>
             </article>
         </main>

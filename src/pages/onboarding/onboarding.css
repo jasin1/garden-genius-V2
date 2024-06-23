@@ -1,6 +1,5 @@
 .main-onboarding{
     background-image: url('../../assets/plant-bg.png');
-    /*background-size: contain;*/
     background-position: right bottom;
     background-repeat: no-repeat;
     height: 100vh;
@@ -37,7 +36,6 @@
 }
 
 .button-wrapper{
-    /*border: 1px solid red;*/
     display: flex;
     justify-content: center;
 }

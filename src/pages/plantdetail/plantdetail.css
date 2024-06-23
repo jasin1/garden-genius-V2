@@ -16,7 +16,6 @@
 }
 
 .plant-image-wrapper{
-    /*width: 496px;*/
     flex: 1;
     border-radius: 10px;
     overflow: hidden;
@@ -126,9 +125,6 @@
 
     .plant-features{
         align-items: start;
-        /*font-size: .8rem;*/
-    ;
-
     }
 
 }

@@ -1,5 +1,3 @@
-import './Arrow.css';
-
 function Arrow({ pathClassName}){
 
     return(
