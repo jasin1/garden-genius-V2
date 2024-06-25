@@ -11,7 +11,7 @@ import SunIcon from "../../assets/icon-sun.svg";
 import CycleIcon from "../../assets/icon-cycle.svg";
 import placeholderImage from '../../assets/placeholder-plant.jpg';
 import Arrow from "../../components/Arrow/Arrow.jsx";
-
+import Button from '../../components/Button/Button.jsx';
 
 
 function Plantdetail() {
@@ -58,11 +58,6 @@ function Plantdetail() {
         }
     }
 
-    // const goBack = ()=>{
-    //     history.goBack();
-    // }
-
-
     return (
         <main>
             <article>
@@ -72,13 +67,12 @@ function Plantdetail() {
                         <p>{error}</p>) : (
                         <div className="plant-detail-wrapper">
                             <div className="plant-top">
-                                <button className="back-btn btn-arrow" onClick={goBack}>
+                                <Button type="button" variant="arrow" onClick={goBack}>
                                     <Arrow pathClassName="svg-path-color"/>
-                                    <p>Back</p>
-                                </button>
+                                    Back
+                                </Button>
 
-                                <button className={isLiked ? 'btn-grey' : 'btn-orange'}
-                                        type="button" onClick={handleButtonClick}>{buttonText}</button>
+                                <Button type="button" variant={isLiked ? 'grey' : 'orange'} onClick={handleButtonClick}>{buttonText}</Button>
                             </div>
                             {plant && (
                                 <div className="plant-detail-container">

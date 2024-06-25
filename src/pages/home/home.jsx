@@ -3,6 +3,7 @@ import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import Button from '../../components/Button/Button.jsx';
 
 
 function Home() {
@@ -93,9 +94,8 @@ function Home() {
                                     </div>
                                     <div className="register-wrapper">
                                         <p>Already have an account? </p>
-                                        <button className="btn-orange" type="button" onClick={handleNavigate}>
-                                            Login
-                                        </button>
+
+                                        <Button type="button" variant="orange" onClick={handleNavigate}> Login </Button>
 
                                     </div>
                                 </div>

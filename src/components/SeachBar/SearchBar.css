@@ -29,14 +29,5 @@
 }
 
 
-.search-btn{
-    height: 100%;
-    padding: .8rem 2rem;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
-}
 
-.search-btn:hover{
-    background-color: var(--color-orange);
 
-}

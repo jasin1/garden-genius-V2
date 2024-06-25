@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {useContext} from "react";
 import axios from "axios";
+import Button from '../../components/Button/Button.jsx';
+import Input from '../../components/Input/Input.jsx';
 
 
 
@@ -68,41 +70,46 @@ function Login() {
                         <div className="form-wrapper">
                             <form onSubmit={handleSubmit(handleFormSubmit)}>
                                 <div className="form-container">
-                                    <label htmlFor="name-filed">
-                                        Name
-                                        <input
-                                            type="text"
-                                            id="name-field"
-                                            placeholder="Enter your name"
-                                            {...register("username")}
-                                        />
-                                    </label>
-                                    <label htmlFor="email-field">
-                                        Email
-                                        <input
-                                            type="email"
-                                            id="email-field"
-                                            placeholder="Enter your email"
-                                            {...register("email")}
-                                        />
-                                    </label>
-                                    <label htmlFor="password-field">
-                                        password
-                                        <input
-                                            type="password"
-                                            id="password-field"
-                                            placeholder="Enter your password"
-                                            {...register("password")}
-                                        />
-                                    </label>
+                                    {/*<label htmlFor="name-filed">*/}
+                                    {/*    Name*/}
+                                    {/*    <input*/}
+                                    {/*        type="text"*/}
+                                    {/*        id="name-field"*/}
+                                    {/*        placeholder="Enter your name"*/}
+                                    {/*        {...register("username")}*/}
+                                    {/*    />*/}
+                                    {/*</label>*/}
+                                    <Input
+                                        id="name-filed"
+                                        label="Name"
+                                        type="text"
+                                        placeholder="Enter your name"
+                                        register={register}
+                                    />
+
+                                    <Input
+                                        id="email-field"
+                                        label="Email"
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        register={register}
+                                    />
+
+                                    <Input
+                                        id="password-field"
+                                        label="Password"
+                                        type="password"
+                                        placeholder="Enter your password"
+                                        register={register}
+                                    />
+
                                     <div className="btn-wrapper">
                                         <button type="submit" className="btn-alt">Login</button>
                                     </div>
                                     <div className="register-wrapper">
                                         <p>If this is your first time, please </p>
-                                        <button className="btn-orange" type="button" onClick={handleNavigate}>
-                                            Register
-                                        </button>
+
+                                        <Button type="button" variant="orange" onClick={handleNavigate}> Register </Button>
 
                                     </div>
                                 </div>

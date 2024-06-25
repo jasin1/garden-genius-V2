@@ -1,6 +1,7 @@
 import './onboarding.css';
 import logo from '../../assets/main-logo.svg';
 import {Link} from "react-router-dom";
+import Button from '../../components/Button/Button.jsx';
 
 function onboarding() {
     return (
@@ -40,7 +41,7 @@ function onboarding() {
                             </p>
                             <div className="button-wrapper">
                                 <Link to="/search">
-                                    <button className="btn-wide" type="button">Start</button>
+                                    <Button type="button" variant="wide"> Start </Button>
                                 </Link>
                             </div>
 

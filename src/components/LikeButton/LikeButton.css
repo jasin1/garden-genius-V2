@@ -19,64 +19,16 @@
     fill: var(--color-orange);
 }
 
-/* ---- Button styling  ---- */
 
-
-.btn-wide{
-    padding: .5rem 6rem;
-}
-
-.btn-wide:hover{
-    background: var(--color-orange);
-}
-
-.btn-orange{
-    background: var(--color-orange);
-    color: var(--color-white);
-}
-
-.btn-orange:hover{
-    background: var(--color-main-green);
-    color: var(--color-white);
-}
+/*---------*/
 
 
 
-.btn-grey{
-    background: var(--color-light-gray);
-    color: var(--color-black);
-    border: 1px solid var(--color-border-gray);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-grey:hover{
-    background: var(--color-main-green);
-    color: var(--color-white);
-}
 
 
 
-.btn-arrow{
-    color: var(--color-main-green);
-    background: none;
-    display: flex;
-    gap: .5rem;
-    font-weight: bold;
-}
 
-.btn-arrow:hover{
-    color: var(--color-orange);
-}
 
-.btn-alt{
-    background: var(--color-light-green);
-    border: 1px solid var(--color-main-green);
-    color: var(--color-main-green);
-    flex: 1;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
 
-.btn-alt:hover{
-    background: var(--color-main-green);
-    color: var(--color-white);
-}
+
+
