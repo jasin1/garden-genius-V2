@@ -14,7 +14,7 @@ import Arrow from "../../components/Arrow/Arrow.jsx";
 import Button from '../../components/Button/Button.jsx';
 
 
-function Plantdetail() {
+function PlantDetails() {
     const {likedPlantIds, likePlant, unlikedPlant} = useContext(PlantContext);
     const {id} = useParams();
     const [plant, setPlant] = useState();
@@ -145,4 +145,4 @@ function Plantdetail() {
     )
 }
 
-export default Plantdetail;
+export default PlantDetails;

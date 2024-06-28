@@ -5,7 +5,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import {useContext} from "react";
 import axios from "axios";
 import Button from '../../components/Button/Button.jsx';
-import Input from '../../components/Input/Input.jsx';
+
 
 
 
@@ -28,7 +28,7 @@ function Login() {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Api-Key': 'gardengenius:5jLE5O1NAeo3qWOhGKuQ'
+                    // 'X-Api-Key': 'gardengenius:5jLE5O1NAeo3qWOhGKuQ'
                 }
             });
             console.log('Login succesvol: ', response.data.jwt);
@@ -70,38 +70,42 @@ function Login() {
                         <div className="form-wrapper">
                             <form onSubmit={handleSubmit(handleFormSubmit)}>
                                 <div className="form-container">
-                                    {/*<label htmlFor="name-filed">*/}
-                                    {/*    Name*/}
-                                    {/*    <input*/}
-                                    {/*        type="text"*/}
-                                    {/*        id="name-field"*/}
-                                    {/*        placeholder="Enter your name"*/}
-                                    {/*        {...register("username")}*/}
-                                    {/*    />*/}
-                                    {/*</label>*/}
-                                    <Input
-                                        id="name-filed"
-                                        label="Name"
-                                        type="text"
-                                        placeholder="Enter your name"
-                                        register={register}
-                                    />
+                                    <label htmlFor="name-filed">
+                                        Name
+                                        <input
+                                            type="text"
+                                            id="name-field"
+                                            placeholder="Enter your name"
+                                            {...register("username")}
+                                        />
+                                    </label>
+                                    <label htmlFor="email-filed">
+                                        Email
+                                        <input
+                                            type="email"
+                                            id="email-field"
+                                            placeholder="Enter your email"
+                                            {...register("email")}
+                                        />
+                                    </label>
 
-                                    <Input
-                                        id="email-field"
-                                        label="Email"
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        register={register}
-                                    />
+                                    <label htmlFor="password-filed">
+                                        Password
+                                        <input
+                                            type="password"
+                                            id="password-field"
+                                            placeholder="Enter your password"
+                                            {...register("password")}
+                                        />
+                                    </label>
 
-                                    <Input
-                                        id="password-field"
-                                        label="Password"
-                                        type="password"
-                                        placeholder="Enter your password"
-                                        register={register}
-                                    />
+                                    {/*<Input*/}
+                                    {/*    id="password-field"*/}
+                                    {/*    label="Password"*/}
+                                    {/*    type="password"*/}
+                                    {/*    placeholder="Enter your password"*/}
+                                    {/*    register={"password"}*/}
+                                    {/*/>*/}
 
                                     <div className="btn-wrapper">
                                         <button type="submit" className="btn-alt">Login</button>

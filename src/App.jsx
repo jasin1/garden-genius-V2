@@ -1,11 +1,11 @@
 import './App.css';
-import Home from './pages/home/home.jsx';
-import Search from './pages/search/search.jsx';
-import Saved from './pages/saved/saved.jsx';
-import Profile from './pages/profile/profile.jsx';
-import Onboarding from "./pages/onboarding/onboarding.jsx";
-import PlantDetail from "./pages/plantdetail/plantdetail.jsx";
-import Login from "./pages/login/login.jsx";
+import Home from './pages/Home/Home.jsx';
+import Search from './pages/search/Search.jsx';
+import Saved from './pages/saved/Saved.jsx';
+import Profile from './pages/profile/Profile.jsx';
+import Onboarding from "./pages/Onboarding/Onboarding.jsx";
+import PlantDetail from "./pages/PlantDetails/PlantDetails.jsx";
+import Login from "./pages/login/Login.jsx";
 import {Routes, Route} from "react-router-dom";
 
 
