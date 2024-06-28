@@ -7,9 +7,6 @@ import axios from "axios";
 import Button from '../../components/Button/Button.jsx';
 
 
-
-
-
 function Login() {
 
     const {register, handleSubmit} = useForm();
@@ -18,7 +15,6 @@ function Login() {
 
 
     async function handleFormSubmit(data) {
-        console.log('formulier gegevens: ', data);
 
         try {
             const response = await axios.post('https://api.datavortex.nl/gardengenius/users/authenticate', {
@@ -28,10 +24,9 @@ function Login() {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'X-Api-Key': 'gardengenius:5jLE5O1NAeo3qWOhGKuQ'
                 }
             });
-            console.log('Login succesvol: ', response.data.jwt);
+            // console.log('Login succesvol: ', response.data.jwt);
         login(response.data.jwt);
         } catch (error) {
             console.error('login fout: ', error);

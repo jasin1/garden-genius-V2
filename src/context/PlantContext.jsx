@@ -1,6 +1,5 @@
 import {createContext, useState, useContext} from "react";
 import {AuthContext} from "./AuthContext.jsx";
-// import axios from "axios";
 
 export const PlantContext = createContext({});
 
@@ -12,11 +11,7 @@ function PlantContextProvider({children}) {
     const likePlant = (plantId) => {
         setLikedPlantIds((prevLikedPlantIds) => {
             const updatedLikedPlantIds = [...prevLikedPlantIds, plantId];
-
-
-            // updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
             updateUserInfo(updatedLikedPlantIds);
-
             return updatedLikedPlantIds;
         });
 
@@ -27,9 +22,6 @@ function PlantContextProvider({children}) {
 
             setLikedPlantIds((prevLikedPlantIds) => {
                 const updatedLikedPlantIds = prevLikedPlantIds.filter((id) => id !== plantId);
-
-
-                // updateUserInfo(user.username, {likedPlantIds: updatedLikedPlantIds});
                 updateUserInfo(updatedLikedPlantIds);
 
                 return updatedLikedPlantIds;

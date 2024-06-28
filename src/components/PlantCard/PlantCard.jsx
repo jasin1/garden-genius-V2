@@ -19,12 +19,6 @@ function PlantCard({plantName, subName, image, id}) {
         setIsLiked(userPlantIds.includes(id));
     }, [Info, id]);
 
-    // const isLiked = userPlantIds.includes(id);
-
-    // const {likedPlantIds, likePlant, unlikedPlant} = useContext(PlantContext);
-    // const isLiked = likedPlantIds.includes(id);
-
-
     const handleLikeClick = () => {
         if (!isLiked) {
             likePlant(id);

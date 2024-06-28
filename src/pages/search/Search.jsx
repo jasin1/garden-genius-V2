@@ -11,8 +11,6 @@ import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 import countries from "../../assets/countries.json";
 
 
-// import searchIcon from "/src/assets/icon-search.svg"
-
 function Search() {
     const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
@@ -22,20 +20,14 @@ function Search() {
     const [noResults, setNoResults] = useState(false);
 
     const [selectedCountry, setSelectedCountry] = useState(null);
-    const [hardinessZones, setHardinessZones] = useState([]);
-    // const Hardiness = "1";
 
     const {likedPlantIds} = useContext(PlantContext);
-    console.log('Inhoud Plant context in search page', likedPlantIds);
 
     const handleCountryChange = (countryName) => {
         const selectedCountryObject = countries.find(
             (country) => country.name === countryName
         )
         setSelectedCountry(selectedCountryObject);
-        setHardinessZones(selectedCountryObject ? selectedCountryObject.zones : [])
-        console.log("Selected country:", selectedCountryObject);
-
     };
 
 
@@ -45,11 +37,8 @@ function Search() {
                 const hardinessQuery = selectedCountry ? selectedCountry.zones.join(",") : "";
                 const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&hardiness=${hardinessQuery}`);
                 setData(response.data.data);
-                console.log("normal results:", response.data.data);
-                // console.log("hardiness zones", hardinessQuery);
-                // console.log('Hardiness ',hardinessZones);
+
             } catch (error) {
-                // console.error("Error fetching data: ", error.response.request.responseText);
                 console.error("Error fetching data: ", error.response.status);
                 setError('Het ophalen van de data is mislukt!')
 
@@ -68,12 +57,10 @@ function Search() {
             const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&q=${searchTerm}`);
             const searchResults = response.data.data || [];
             setSearchResults(searchResults);
-            console.log("Search result for plants: ", searchResults);
             setNoResults(searchResults.length === 0);
         } catch (error) {
             console.error("Error searching for plants:", error);
         }
-        console.log("Search term :", searchTerm)
     }
 
 

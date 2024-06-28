@@ -21,7 +21,7 @@ function Home() {
                 }
 
             });
-            console.log('Registratie succesvol: ', response.data);
+            // console.log('Registratie succesvol: ', response.data);
         } catch (error) {
             console.error('Registratiefout: ', error)
         }

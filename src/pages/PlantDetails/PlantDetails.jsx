@@ -4,7 +4,7 @@ import {useParams, useNavigate} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {PlantContext} from '../../context/PlantContext.jsx';
 import axios from "axios";
-// import { useHistory } from 'react-router-dom';
+
 import Footer from "../../components/Footer/Footer.jsx";
 import WateringIcon from "../../assets/icon-watering.svg";
 import SunIcon from "../../assets/icon-sun.svg";
@@ -28,14 +28,10 @@ function PlantDetails() {
         navigate(-1);
     }
 
-
-    console.log('gelikte planten', likedPlantIds);
-
     useEffect(() => {
         async function fetchDetailData() {
             try {
                 const response = await axios.get(`https://perenual.com/api/species/details/${id}?key=sk-nmqA66236192cd6f53490`);
-                console.log('detail response', response.data);
                 setPlant(response.data);
             } catch (e) {
                 console.error(e);
@@ -44,7 +40,6 @@ function PlantDetails() {
         }
 
         fetchDetailData();
-        console.log('huidige id ', id);
 
     }, [id]);
 

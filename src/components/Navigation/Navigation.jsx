@@ -13,7 +13,6 @@ function Navigation() {
     const { logout} = useContext(AuthContext);
 
     function handleLogOut(){
-        // e.preventDefault();
         logout();
     }
 
@@ -66,7 +65,6 @@ function Navigation() {
                     </NavLink>
                 </li>
                 <li>
-                    {/*<NavLink to="/profile" className="nav-link">*/}
                         <div className="nav-profile nav-link" onClick={handleLogOut}>
                             <span>Logout</span>
                             <svg className="userIcon" width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +72,6 @@ function Navigation() {
                             </svg>
 
                         </div>
-                    {/*</NavLink>*/}
                 </li>
 
             </ul>

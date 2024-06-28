@@ -12,9 +12,6 @@ function Profile() {
 
     const userName = user ? user.username : null;
     const userEmail = user ? user.email : null;
-    // const userInfo = user ? JSON.parse(user.info) : null;
-
-    // const numSavedPlants = userInfo ? userInfo.length : 0;
 
     useEffect(() => {
         if(user && user.info){
@@ -25,15 +22,6 @@ function Profile() {
         }
 
     }, [user]);
-
-
-
-
-    console.log("user object: ", user);
-    console.log("username is ", userName);
-    console.log("user email", userEmail);
-    // console.log("user info ", userInfo);
-    // console.log("length plants array", LikedPlantIds.length);
 
 
     return (

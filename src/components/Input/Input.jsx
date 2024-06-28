@@ -12,8 +12,6 @@ function Input({id, label, type, placeholder, register }){
                     {...register(id)}
                 />
             </label>
-
-
     )
 }
 

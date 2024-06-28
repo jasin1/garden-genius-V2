@@ -34,8 +34,7 @@ function AuthContextProvider({children}) {
                 }
             );
             console.log("User information updated successfully:", response.data.info);
-            console.log('updateUserInfo user ', Auth.user.username);
-            console.log('updateUserInfo IDS ', userInfo);
+
 
 
         } catch (error) {
@@ -54,7 +53,6 @@ function AuthContextProvider({children}) {
             void login(token);
 
         } else {
-            console.log('do nothing after checking useEffect for token');
             setAuth({
                 isAuth: false,
                 user: null,
@@ -67,8 +65,6 @@ function AuthContextProvider({children}) {
     async function login(token) {
         localStorage.setItem('token', token);
         const decodedToken = jwtDecode(token);
-        console.log('decoded JWT', decodedToken.sub)
-
         try {
             const response = await axios.get(`https://api.datavortex.nl/gardengenius/users/${decodedToken.sub}`,
                 {
@@ -78,8 +74,6 @@ function AuthContextProvider({children}) {
                     }
                 }
             );
-
-            console.log("Response userdata: ", response.data);
 
             if (response.data && response.data.username && response.data.email) {
 
@@ -92,9 +86,6 @@ function AuthContextProvider({children}) {
                     },
                     status: 'done',
                 });
-                console.log('authContext response ', response);
-                // console.log('Current user from Auth',response.data.username)
-                console.log('Auth content: ', Auth);
                 navigate('/search');
 
             }
@@ -103,11 +94,6 @@ function AuthContextProvider({children}) {
             console.error('login error: ', e);
             logout();
         }
-
-
-        console.log('User logged in');
-        // navigate('/search');
-
     }
 
     async function getUserInfo() {
@@ -123,7 +109,6 @@ function AuthContextProvider({children}) {
                     }
                 }
             );
-            // return response.data;
             const userInfo = response.data;
             const plantIds = userInfo.map(id => id);
 
@@ -138,7 +123,6 @@ function AuthContextProvider({children}) {
 
 
     function logout() {
-        console.log('User logged out');
         setAuth({
             isAuth: false,
             user: null,
