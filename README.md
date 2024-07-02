@@ -40,10 +40,14 @@ De applicatie zou nu toegankelijk moeten zijn via http://localhost:3000.
 ## Inloggegevens
 Gebruik de volgende inloggegevens om toegang te krijgen tot de applicatie:
 
-- Gebruikersnaam: Jasin
-- Email: jasin.tairaidrissi@gmail.com
-- Wachtwoord: gardengenius1!
-- API key: **sk-nmqA66236192cd6f53490**
+- Gebruikersnaam: Jasin3
+- Email: hi@jasinidrissi.com
+- Wachtwoord: gardengenius3
+
+## API Key Setup
+
+Deze applicatie maakt gebruik van API keys die worden opgeslagen in environment variables voor veiligheid.
+
 
 ### Toelichting 
 De installatiehandleiding bevat alle noodzakelijke informatie die een ontwikkelaar nodig heeft om de applicatie lokaal te installeren en te runnen. Het begint met een overzicht van de functionaliteit en een screenshot van de applicatie. Vervolgens geeft het een lijst van benodigdheden, gedetailleerde installatie-instructies en inloggegevens voor testaccounts. Deze handleiding zorgt ervoor dat zelfs een ontwikkelaar zonder ervaring binnen het frontend-landschap de applicatie succesvol kan opzetten en gebruiken.
