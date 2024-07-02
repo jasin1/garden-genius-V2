@@ -4,6 +4,7 @@ import Hero from "../../assets/profile-hero.jpg";
 import Footer from "../../components/Footer/Footer.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {useContext, useState, useEffect} from "react";
+import Header from "../../components/Headers/Header.jsx";
 
 function Profile() {
 
@@ -35,12 +36,12 @@ function Profile() {
                     <div className="block-top">
                         <div className="heading-block">
                             {userName ?(
-                                <h1>Welcome, {userName}!</h1>
+                                <Header Tag={"h1"}>Welcome, {userName}!</Header>
                             ): (
-                                <h1>Please log in to view your profile</h1>
+                                <Header Tag="h1">Please log in to view your profile</Header>
                             )}
-                            <h2>Your Email adres is <span className="coloredTxt">{userEmail}</span> </h2>
-                            <h2>Number of Saved Plants is <span className="coloredTxt">{numSavedPlants}</span></h2>
+                            <Header Tag="h2">Your Email address is <span className="coloredTxt">{userEmail}</span></Header>
+                            <Header Tag="h2">Number of Saved Plants is <span className="coloredTxt">{numSavedPlants}</span></Header>
                         </div>
 
                     </div>

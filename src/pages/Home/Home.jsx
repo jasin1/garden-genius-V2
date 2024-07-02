@@ -90,7 +90,7 @@ function Home() {
                                         />
                                     </label>
                                     <div className="btn-wrapper">
-                                        <button type="submit" className="btn-alt">Sign up now</button>
+                                        <Button type="submit" variant="alt">Sign up Now</Button>
                                     </div>
                                     <div className="register-wrapper">
                                         <p>Already have an account? </p>

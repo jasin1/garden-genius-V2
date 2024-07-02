@@ -5,6 +5,8 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import {useContext} from "react";
 import axios from "axios";
 import Button from '../../components/Button/Button.jsx';
+import Header from "../../components/Headers/Header.jsx"
+
 
 
 function Login() {
@@ -15,6 +17,7 @@ function Login() {
 
 
     async function handleFormSubmit(data) {
+        console.log('Login nu!', register)
 
         try {
             const response = await axios.post('https://api.datavortex.nl/gardengenius/users/authenticate', {
@@ -26,7 +29,7 @@ function Login() {
                     'Content-Type': 'application/json',
                 }
             });
-            // console.log('Login succesvol: ', response.data.jwt);
+
         login(response.data.jwt);
         } catch (error) {
             console.error('login fout: ', error);
@@ -56,8 +59,7 @@ function Login() {
                 <div className="intro-container">
                     <div className="intro-wrapper">
                         <div className="intro-header">
-                            <h1 className="intro-welcome-txt">Welcome back!</h1>
-
+                            <Header className={"intro-welcome-txt"} Tag={"h1"}>Welcome Back!</Header>
                             <p>
                                 Let&apos;s get our hands dirty and dive back into the green world of gardening together!
                             </p>
@@ -65,6 +67,7 @@ function Login() {
                         <div className="form-wrapper">
                             <form onSubmit={handleSubmit(handleFormSubmit)}>
                                 <div className="form-container">
+
                                     <label htmlFor="name-filed">
                                         Name
                                         <input
@@ -94,16 +97,9 @@ function Login() {
                                         />
                                     </label>
 
-                                    {/*<Input*/}
-                                    {/*    id="password-field"*/}
-                                    {/*    label="Password"*/}
-                                    {/*    type="password"*/}
-                                    {/*    placeholder="Enter your password"*/}
-                                    {/*    register={"password"}*/}
-                                    {/*/>*/}
 
                                     <div className="btn-wrapper">
-                                        <button type="submit" className="btn-alt">Login</button>
+                                        <Button type="submit" variant="alt">Login</Button>
                                     </div>
                                     <div className="register-wrapper">
                                         <p>If this is your first time, please </p>

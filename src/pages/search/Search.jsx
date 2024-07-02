@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 import SearchBar from "../../components/SeachBar/SearchBar.jsx";
 import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 import countries from "../../assets/countries.json";
+import Header from "../../components/Headers/Header.jsx";
 
 
 function Search() {
@@ -35,7 +36,7 @@ function Search() {
         async function fetchData() {
             try {
                 const hardinessQuery = selectedCountry ? selectedCountry.zones.join(",") : "";
-                const response = await axios.get(`https://perenual.com/api/species-list?key=sk-nmqA66236192cd6f53490&hardiness=${hardinessQuery}`);
+                const response = await axios.get(`https://perenual.com/api/species-list?key=${import.meta.env.VITE_API_KEY}&hardiness=${hardinessQuery}`);
                 setData(response.data.data);
 
             } catch (error) {
@@ -86,7 +87,7 @@ function Search() {
                     <div className="container">
                         <div className="indicator-header">
 
-                            <h2 className={noResults ? 'no-result' : ''}>
+                            <Header Tag="h2" className={noResults ? 'no-result' : ''}>
                                 {noResults ? (
                                     `No results for ${InputSearch}`
                                 ) : (
@@ -95,7 +96,7 @@ function Search() {
                                 {InputSearch && !noResults && (
                                     <span className="searchTerm"> for {InputSearch}</span>
                                 )}
-                            </h2>
+                            </Header>
 
                             {!isSearching && (
 

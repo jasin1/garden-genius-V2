@@ -8,6 +8,7 @@ import emptyPot from "../../assets/leegpotje.svg";
 import {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import Header from "../../components/Headers/Header.jsx"
 
 function Saved() {
 
@@ -24,7 +25,7 @@ function Saved() {
                 console.log('info is', Info)
 
                 const plantRequests = userInfo.map((id) =>
-                    axios.get(`https://perenual.com/api/species/details/${id}?key=sk-nmqA66236192cd6f53490`));
+                    axios.get(`https://perenual.com/api/species/details/${id}?key=${import.meta.env.VITE_API_KEY}`));
 
                 const responses = await Promise.all(plantRequests);
                 const plantData = responses.map((response) => response.data);
@@ -52,7 +53,7 @@ function Saved() {
                 </header>
                 <section className="suggested">
                     <div className="container">
-                        <h2>Saved Plants</h2>
+                        <Header Tag={"h2"}>Saved Plants</Header>
                         {isLoading ? (
                             <div>Loading...</div>
                         ) : savedPlants.length === 0 ?(
