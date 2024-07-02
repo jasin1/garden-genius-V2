@@ -14,18 +14,17 @@ function Home() {
     async function handleFormSubmit(data) {
         console.log('formulier gegevens: ', data);
         try {
-            const response = await axios.post('https://api.datavortex.nl/gardengenius/users', data, {
+            await axios.post('https://api.datavortex.nl/gardengenius/users', data, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Api-Key': 'gardengenius:5jLE5O1NAeo3qWOhGKuQ'
+                    'X-Api-Key': import.meta.env.VITE_AUTH_API_KEY
                 }
 
             });
-            // console.log('Registratie succesvol: ', response.data);
+
         } catch (error) {
             console.error('Registratiefout: ', error)
         }
-
 
     }
 
