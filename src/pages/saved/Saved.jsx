@@ -15,14 +15,15 @@ function Saved() {
     const { likedPlantIds } = useContext(PlantContext);
     const [savedPlants, setSavedPlants] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const {Info, getUserInfo} = useContext(AuthContext);
+    const {info, getUserInfo} = useContext(AuthContext);
 
     useEffect(() => {
         const fetchSavedPlants = async () => {
             try {
                 const userInfo = await getUserInfo();
+                console.log('UnserInfo', userInfo);
                 setIsLoading(true);
-                console.log('info is', Info)
+                console.log('info is', info);
 
                 const plantRequests = userInfo.map((id) =>
                     axios.get(`https://perenual.com/api/species/details/${id}?key=${import.meta.env.VITE_API_KEY}`));
@@ -54,6 +55,11 @@ function Saved() {
                 <section className="suggested">
                     <div className="container">
                         <Header Tag={"h2"}>Saved Plants</Header>
+                        {info && (
+                            <div className="user-info">
+                                <p>Welcome back, {info || 'User'}!</p>
+                            </div>
+                        )}
                         {isLoading ? (
                             <div>Loading...</div>
                         ) : savedPlants.length === 0 ?(

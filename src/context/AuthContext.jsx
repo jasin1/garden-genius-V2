@@ -9,7 +9,7 @@ export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
 
-    const [Info, setInfo ] = useState([]);
+    const [info, setInfo ] = useState([]);
 
 
     const [Auth, setAuth] = useState({
@@ -21,7 +21,7 @@ function AuthContextProvider({children}) {
     async function updateUserInfo(userInfo) {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put(
+            await axios.put(
                 `https://api.datavortex.nl/gardengenius/users/${Auth.user.username}`,
                 {
                     info: JSON.stringify(userInfo)
@@ -33,8 +33,6 @@ function AuthContextProvider({children}) {
                     }
                 }
             );
-            console.log("User information updated successfully:", response.data.info);
-
 
 
         } catch (error) {
@@ -112,6 +110,9 @@ function AuthContextProvider({children}) {
             const userInfo = response.data;
             const plantIds = userInfo.map(id => id);
 
+            console.log('Fetched userInfo:', userInfo); // Log fetched userInfo
+            console.log('Mapped plantIds:', plantIds); // Log mapped plantIds
+
             setInfo(plantIds);
 
             return plantIds;
@@ -139,7 +140,7 @@ function AuthContextProvider({children}) {
         logout: logout,
         updateUserInfo: updateUserInfo,
         getUserInfo: getUserInfo,
-        Info: Info,
+        Info: info,
     };
 
     return (
