@@ -10,6 +10,7 @@ import SearchBar from "../../components/SeachBar/SearchBar.jsx";
 import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 import countries from "../../assets/countries.json";
 import Header from "../../components/Headers/Header.jsx";
+import Notification from "../../components/Notification/Notification.jsx";
 
 
 function Search() {
@@ -63,6 +64,11 @@ function Search() {
             console.error("Error searching for plants:", error);
         }
     }
+
+    const handleCloseNotification = () =>{
+        setError(null);
+    }
+
 
 
     return (
@@ -134,6 +140,12 @@ function Search() {
                     </div>
                 </section>
                 <Footer/>
+                {error && (
+                    <Notification
+                        message={error}
+                        onClose={handleCloseNotification}
+                    />
+                )}
             </article>
         </main>
 

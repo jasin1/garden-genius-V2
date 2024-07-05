@@ -2,10 +2,11 @@ import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import axios from "axios";
 import Button from '../../components/Button/Button.jsx';
-import Header from "../../components/Headers/Header.jsx"
+import Header from "../../components/Headers/Header.jsx";
+import Notification from "../../components/Notification/Notification.jsx";
 
 
 
@@ -14,6 +15,7 @@ function Login() {
     const {register, handleSubmit} = useForm();
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
 
     async function handleFormSubmit(data) {
@@ -33,11 +35,16 @@ function Login() {
         login(response.data.jwt);
         } catch (error) {
             console.error('login fout: ', error);
+            setError('Login error');
         }
     }
 
     function handleNavigate(){
         navigate('/');
+    }
+
+    const handleCloseNotification = () =>{
+        setError(null);
     }
 
     return (
@@ -112,6 +119,12 @@ function Login() {
                         </div>
                     </div>
                 </div>
+                {error && (
+                    <Notification
+                        message={error}
+                        onClose={handleCloseNotification}
+                    />
+                )}
             </section>
         </main>
     );

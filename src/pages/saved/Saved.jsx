@@ -8,7 +8,8 @@ import emptyPot from "../../assets/leegpotje.svg";
 import {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import Header from "../../components/Headers/Header.jsx"
+import Header from "../../components/Headers/Header.jsx";
+import Notification from "../../components/Notification/Notification.jsx";
 
 function Saved() {
 
@@ -16,14 +17,13 @@ function Saved() {
     const [savedPlants, setSavedPlants] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const {info, getUserInfo} = useContext(AuthContext);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchSavedPlants = async () => {
             try {
-                const userInfo = await getUserInfo();
-                console.log('UnserInfo', userInfo);
                 setIsLoading(true);
-                console.log('info is', info);
+                const userInfo = await getUserInfo();
 
                 const plantRequests = userInfo.map((id) =>
                     axios.get(`https://perenual.com/api/species/details/${id}?key=${import.meta.env.VITE_API_KEY}`));
@@ -36,12 +36,19 @@ function Saved() {
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching saved plants: ', error);
+                setError('Error fetching saved plants');
                 setIsLoading(false);
             }
         };
         fetchSavedPlants();
 
     }, [likedPlantIds]);
+
+
+
+    const handleCloseNotification = () =>{
+        setError(null);
+    }
 
 
 
@@ -55,6 +62,7 @@ function Saved() {
                 <section className="suggested">
                     <div className="container">
                         <Header Tag={"h2"}>Saved Plants</Header>
+                        {/*<button onClick={handleTestNotification}>Test Notification</button>*/}
                         {info && (
                             <div className="user-info">
                                 <p>Welcome back, {info || 'User'}!</p>
@@ -87,6 +95,12 @@ function Saved() {
 
                 </section>
                 <Footer/>
+                {error && (
+                    <Notification
+                        message={error}
+                        onClose={handleCloseNotification}
+                        />
+                )}
             </article>
         </main>
     );

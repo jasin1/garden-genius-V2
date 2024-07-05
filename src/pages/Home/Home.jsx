@@ -4,11 +4,14 @@ import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Button from '../../components/Button/Button.jsx';
+import Notification from "../../components/Notification/Notification.jsx";
+import {useState} from "react";
 
 
 function Home() {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
 
     async function handleFormSubmit(data) {
@@ -23,13 +26,18 @@ function Home() {
             });
 
         } catch (error) {
-            console.error('Registratiefout: ', error)
+            console.error('Registratiefout: ', error);
+            setError('Registratiefout');
         }
 
     }
 
     function handleNavigate(){
         navigate('/login');
+    }
+
+    const handleCloseNotification = () =>{
+        setError(null);
     }
 
     return (
@@ -102,6 +110,12 @@ function Home() {
                         </div>
                     </div>
                 </div>
+                {error && (
+                    <Notification
+                        message={error}
+                        onClose={handleCloseNotification}
+                    />
+                )}
             </section>
         </main>
     );
