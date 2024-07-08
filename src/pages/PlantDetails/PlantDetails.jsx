@@ -12,17 +12,20 @@ import CycleIcon from "../../assets/icon-cycle.svg";
 import placeholderImage from '../../assets/placeholder-plant.jpg';
 import Arrow from "../../components/Arrow/Arrow.jsx";
 import Button from '../../components/Button/Button.jsx';
+import Notification from "../../components/Notification/Notification.jsx";
+
 
 
 function PlantDetails() {
     const {likedPlantIds, likePlant, unlikedPlant} = useContext(PlantContext);
     const {id} = useParams();
     const [plant, setPlant] = useState();
-    const [error, setError] = useState();
+    const [error, setError] = useState(null);
     const numericId = parseInt(id, 10);
     const isLiked = likedPlantIds.includes(numericId);
     const [buttonText, setButtonText] = useState(isLiked ? "Remove from collection" : "Add to collection");
     const navigate = useNavigate();
+
 
     const goBack = ()=>{
         navigate(-1);
@@ -51,6 +54,10 @@ function PlantDetails() {
             likePlant(numericId);
             setButtonText("Remove from collection");
         }
+    }
+
+    const handleCloseNotification = () =>{
+        setError(null);
     }
 
     return (
@@ -135,6 +142,12 @@ function PlantDetails() {
                     )}
                 </section>
                 <Footer/>
+                {error && (
+                    <Notification
+                        message={error}
+                        onClose={handleCloseNotification}
+                    />
+                )}
             </article>
         </main>
     )

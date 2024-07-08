@@ -12,7 +12,7 @@
     border: 1px solid var(--color-input-border);
 }
 
-.select-items {
+.select-items{
     position: absolute;
     display: none;
     color: var(--color-black);
@@ -21,7 +21,6 @@
     max-height: 164px;
     overflow-y: auto;
     border: 1px solid var(--color-input-border);
-    /*border-top: none;*/
     z-index: 1;
     border-radius: 8px;
     margin-top: 8px;

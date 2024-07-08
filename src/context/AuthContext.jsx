@@ -5,13 +5,12 @@ import {jwtDecode} from "jwt-decode";
 import isTokenValid from "../helpers/istokenvalid.js";
 
 
+
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
 
     const [info, setInfo ] = useState([]);
-
-
     const [Auth, setAuth] = useState({
         isAuth: false,
         user: null,
@@ -110,8 +109,6 @@ function AuthContextProvider({children}) {
             const userInfo = response.data;
             const plantIds = userInfo.map(id => id);
 
-            console.log('Fetched userInfo:', userInfo); // Log fetched userInfo
-            console.log('Mapped plantIds:', plantIds); // Log mapped plantIds
 
             setInfo(plantIds);
 
@@ -142,6 +139,7 @@ function AuthContextProvider({children}) {
         getUserInfo: getUserInfo,
         Info: info,
     };
+
 
     return (
         <AuthContext.Provider value={AuthData}>

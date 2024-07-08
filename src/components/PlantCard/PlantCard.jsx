@@ -22,10 +22,8 @@ function PlantCard({plantName, subName, image, id}) {
     const handleLikeClick = () => {
         if (!isLiked) {
             likePlant(id);
-            console.log("Like button clicked!")
         } else {
             unlikedPlant(id);
-            console.log("Plant is unliked");
         }
         setIsLiked(!isLiked);
     }
