@@ -4,7 +4,7 @@ function Notfound() {
     return (
         <main>
             <article>
-                <h1>Oooops! Page not found</h1>
+                <h1>Ooooops! Page not found</h1>
             </article>
         </main>
     );
