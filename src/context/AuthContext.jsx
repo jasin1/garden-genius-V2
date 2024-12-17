@@ -4,8 +4,6 @@ import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import isTokenValid from "../helpers/istokenvalid.js";
 
-
-
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
