@@ -11,9 +11,11 @@ import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 import countries from "../../assets/countries.json";
 import Header from "../../components/Headers/Header.jsx";
 import Notification from "../../components/Notification/Notification.jsx";
+// import {supabase} from "../../config/supabaseClient.js";
 
 
 function Search() {
+    // console.log(supabase);
     const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState('');
