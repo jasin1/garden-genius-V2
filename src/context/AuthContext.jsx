@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import isTokenValid from "../helpers/istokenvalid.js";
-import {supabase} from "../config/supabaseClient.js";
+// import {supabase} from "../config/supabaseClient.js";
 
 export const AuthContext = createContext({});
 
