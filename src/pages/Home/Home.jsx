@@ -2,34 +2,39 @@ import './home.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { AuthContext } from '../../context/AuthContext.jsx';
 import Button from '../../components/Button/Button.jsx';
 import Notification from "../../components/Notification/Notification.jsx";
-import {useState} from "react";
+import {useState, useContext} from "react";
 
 
 function Home() {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
+    const {signUp} = useContext(AuthContext);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
 
 
     async function handleFormSubmit(data) {
-        console.log('formulier gegevens: ', data);
+        console.log('Form data: ', data);
+
         try {
-            await axios.post('https://api.datavortex.nl/gardengenius/users', data, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Api-Key': import.meta.env.VITE_AUTH_API_KEY
-                }
+            // Call the signUp function from AuthContext
+            const result = await signUp(data.username, data.email, data.password);
 
-            });
-
-        } catch (error) {
-            console.error('Registratiefout: ', error);
-            setError('Registratiefout');
+            if (result.error) {
+                console.error('Signup Error: ', result.error);
+                setError(result.error.message || 'Something went wrong. Please try again.');
+            } else {
+                console.log("Signup successful:", result);
+                setSuccess(true);
+            }
+        } catch (err) {
+            console.error('Unexpected error during signup:', err);
+            setError('An unexpected error occurred. Please try again.');
         }
-
     }
 
     function handleNavigate(){
@@ -38,6 +43,7 @@ function Home() {
 
     const handleCloseNotification = () =>{
         setError(null);
+        setSuccess(false);
     }
 
     return (
@@ -75,7 +81,7 @@ function Home() {
                                             type="text"
                                             id="name-field"
                                             placeholder="Enter your name"
-                                            {...register("username")}
+                                            {...register("username", {required: true})}
                                         />
                                     </label>
                                     <label htmlFor="email-field">
@@ -84,7 +90,7 @@ function Home() {
                                             type="email"
                                             id="email-field"
                                             placeholder="Enter your email"
-                                            {...register("email")}
+                                            {...register("email", {required: true})}
                                         />
                                     </label>
                                     <label htmlFor="password-field">
@@ -93,7 +99,7 @@ function Home() {
                                             type="password"
                                             id="password-field"
                                             placeholder="Enter your password"
-                                            {...register("password")}
+                                            {...register("password", {required: true})}
                                         />
                                     </label>
                                     <div className="btn-wrapper">
@@ -116,6 +122,12 @@ function Home() {
                         onClose={handleCloseNotification}
                     />
                 )}
+                {success && (
+                    <Notification
+                        message="Signup successful! Please check your email to confirm your account."
+                        onClose={handleCloseNotification}
+                    />
+                )}  
             </section>
         </main>
     );
