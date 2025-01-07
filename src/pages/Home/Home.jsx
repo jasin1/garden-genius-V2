@@ -12,7 +12,7 @@ import {useState, useContext} from "react";
 function Home() {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
-    const {signUp} = useContext(AuthContext);
+    const { signUp } = useContext(AuthContext);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
@@ -27,9 +27,11 @@ function Home() {
             if (result.error) {
                 console.error('Signup Error: ', result.error);
                 setError(result.error.message || 'Something went wrong. Please try again.');
-            } else {
+            } 
+            if(!result.error) {
                 console.log("Signup successful:", result);
                 setSuccess(true);
+                navigate('/confirmation')
             }
         } catch (err) {
             console.error('Unexpected error during signup:', err);
@@ -119,12 +121,14 @@ function Home() {
                 {error && (
                     <Notification
                         message={error}
+                        type="error"
                         onClose={handleCloseNotification}
                     />
                 )}
                 {success && (
                     <Notification
                         message="Signup successful! Please check your email to confirm your account."
+                        type="success"
                         onClose={handleCloseNotification}
                     />
                 )}  

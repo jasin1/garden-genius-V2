@@ -15,9 +15,9 @@
 
 .notification{
     position: relative;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 28%, rgba(239,228,228,1) 100%);
-    color: #721c24;
+    /* background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 28%, rgba(239,228,228,1) 100%); */
+    /* color: #721c24; */
     padding: 1rem 1rem 2rem;
     border: 1px solid var(--color-white);
     border-radius: 10px;
@@ -34,15 +34,12 @@
 }
 
 .notification-header {
-    /*margin-bottom: .5rem;*/
-    color: #DD1010;
     font-weight: bold;
     font-size: 1.2rem;
 }
 
 
 .notification button {
-
     background: none;
     border: none;
     color: inherit;

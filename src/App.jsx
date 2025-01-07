@@ -6,6 +6,7 @@ import Profile from './pages/profile/Profile.jsx';
 import Onboarding from "./pages/Onboarding/Onboarding.jsx";
 import PlantDetail from "./pages/PlantDetails/PlantDetails.jsx";
 import Login from "./pages/login/Login.jsx";
+import Confirmation from './pages/Confirmation/Confirmation.jsx';
 import {Routes, Route} from "react-router-dom";
 
 
@@ -24,6 +25,8 @@ function App() {
                 <Route path="/onboarding" element={<Onboarding/>}/>
                 <Route path="/plantdetail/:id" element={<PlantDetail/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/confirmation" element={<Confirmation/>}/>
+
             </Routes>
 
 
