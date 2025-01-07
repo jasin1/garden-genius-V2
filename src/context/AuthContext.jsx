@@ -1,58 +1,57 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import isTokenValid from "../helpers/istokenvalid.js";
 import { supabase } from "../config/supabaseClient.js";
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
-  const [info, setInfo] = useState([]);
-  const [Auth, setAuth] = useState({
-    isAuth: false,
-    user: null,
-    status: "pending",
-  });
 
-  async function updateUserInfo(userInfo) {
-    try {
-      const token = localStorage.getItem("token");
-      await axios.put(
-        `https://api.datavortex.nl/gardengenius/users/${Auth.user.username}`,
-        {
-          info: JSON.stringify(userInfo),
-        },
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-    } catch (error) {
-      console.error("Error updating user information:", error);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const getUser = async ()=>{
+      setLoading(true);
+      const {data:{session}} = await supabase.auth.getSession();
+      setUser(session?.user || null);
+      setLoading(false);
+    };
+    getUser();
+
+  },[]);
+
+  async function login(email, password){
+    setLoading(true);
+    try{
+      const {data, error} = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      
+      if(error){
+        setError(error.message);
+        return error;
+      }
+
+      setUser(data.user);
+      
+      navigate('/search');
+      return{data};
+    }catch(err){
+      console.log("Unexpected login error:", err);
+      setError('An unexpected error occurred during login');
+      return{error: err};
+    }finally{
+      setLoading(false);
     }
   }
 
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    // is de token nog geldig? check met iat helper function
-
-    if (token && isTokenValid(token)) {
-      void login(token);
-    } else {
-      setAuth({
-        isAuth: false,
-        user: null,
-        status: "done",
-      });
-    }
-  }, []);
 
   async function signUp(username, email, password) {
+    setLoading(true);
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -66,95 +65,52 @@ function AuthContextProvider({ children }) {
 
       if (error) {
         console.error("Sign-up error:", error.message);
+        setError(error.message);
         // Optionally: Show the error message to the user
-        return;
+        return error;
       }
 
       console.log("Sign-up successful:", data);
+      return {data};
     } catch (err) {
       console.error("Unexpected error during sign-up:", err);
+      setError("An unexpected error occurred during sign-up");
+      return {error: err};
+    }finally{
+      setLoading(false);
     }
   }
 
-  async function login(token) {
-    localStorage.setItem("token", token);
-    const decodedToken = jwtDecode(token);
-    try {
-      const response = await axios.get(
-        `https://api.datavortex.nl/gardengenius/users/${decodedToken.sub}`,
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
+  async function logout(){
+    setLoading(true);
+    try{
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
 
-      if (response.data && response.data.username && response.data.email) {
-        setAuth({
-          isAuth: true,
-          user: {
-            username: response.data.username,
-            email: response.data.email,
-            info: response.data.info,
-          },
-          status: "done",
-        });
-        navigate("/search");
-      }
-    } catch (e) {
-      console.error("login error: ", e);
-      logout();
+      setUser(null);
+      navigate('/login');
+    }catch(err){
+      console.log("logOut failed", err);
+      setError('An unexpected error occurred during logout');
+    }finally{
+      setLoading(false);
     }
   }
 
-  async function getUserInfo() {
-    try {
-      const token = localStorage.getItem("token");
-      const username = Auth.user.username;
-      const response = await axios.get(
-        `https://api.datavortex.nl/gardengenius/users/${username}/info`,
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      const userInfo = response.data;
-      const plantIds = userInfo.map((id) => id);
-
-      setInfo(plantIds);
-
-      return plantIds;
-    } catch (error) {
-      console.error("Error retrieving user information:", error);
-    }
-  }
-
-  function logout() {
-    setAuth({
-      isAuth: false,
-      user: null,
-      status: "done",
-    });
-    navigate("/login");
-  }
-
-  const AuthData = {
-    isAuth: Auth.isAuth,
-    user: Auth.user,
-    signUp: signUp,
-    login: login,
-    logout: logout,
-    updateUserInfo: updateUserInfo,
-    getUserInfo: getUserInfo,
-    Info: info,
+  const AuthData ={
+    user,
+    login,
+    signUp,
+    logout,
+    error,
+    loading,
   };
+
+
 
   return (
     <AuthContext.Provider value={AuthData}>
-      {Auth.status === "done" ? children : <p>Loading...</p>}
+      {loading ? <p>Loading...</p> : children}
     </AuthContext.Provider>
   );
 }
