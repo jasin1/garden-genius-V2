@@ -3,6 +3,8 @@ import axios from "axios";
 import {useState, useEffect, useContext} from "react";
 import {PlantContext} from '../../context/PlantContext.jsx';
 
+import { AuthContext } from '../../context/AuthContext.jsx';
+
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import PlantCard from "../../components/PlantCard/PlantCard.jsx"
 import Footer from "../../components/Footer/Footer.jsx";
@@ -26,6 +28,8 @@ function Search() {
     const [selectedCountry, setSelectedCountry] = useState(null);
 
     const {likedPlantIds} = useContext(PlantContext);
+
+    const { user } = useContext(AuthContext);
 
     const handleCountryChange = (countryName) => {
         const selectedCountryObject = countries.find(
@@ -79,6 +83,7 @@ function Search() {
                 <Navigation/>
                 <section className="search-container">
                     <header className="search-header">
+                    <span>{user ? `Welcome, ${user.user_metadata.username}` : 'Please log in'}</span>
                         <h1 className="search-h1">Unleash the superpowers of plants</h1>
                         <SearchBar
                             onSearch={handleSearch}

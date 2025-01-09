@@ -2,7 +2,6 @@ import './home.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
-// import axios from "axios";
 import { AuthContext } from '../../context/AuthContext.jsx';
 import Button from '../../components/Button/Button.jsx';
 import Notification from "../../components/Notification/Notification.jsx";
@@ -18,7 +17,7 @@ function Home() {
 
 
     async function handleFormSubmit(data) {
-        console.log('Form data: ', data);
+        console.log("Form Data:", data); 
 
         try {
             // Call the signUp function from AuthContext

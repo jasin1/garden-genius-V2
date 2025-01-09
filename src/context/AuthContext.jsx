@@ -51,6 +51,7 @@ function AuthContextProvider({ children }) {
 
 
   async function signUp(username, email, password) {
+    console.log("Signing up with username:", username);
     setLoading(true);
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -60,8 +61,11 @@ function AuthContextProvider({ children }) {
           data: {
             username,
           },
+          emailRedirectTo: 'http://localhost:3000/search',
         },
       });
+
+      console.log("Data from supabase:", data);
 
       if (error) {
         console.error("Sign-up error:", error.message);
@@ -103,6 +107,7 @@ function AuthContextProvider({ children }) {
     signUp,
     logout,
     error,
+    setError,
     loading,
   };
 

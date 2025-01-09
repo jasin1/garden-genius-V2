@@ -2,8 +2,8 @@ import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import {useContext, useState} from "react";
-import axios from "axios";
+import {useContext} from "react";
+// import axios from "axios";
 import Button from '../../components/Button/Button.jsx';
 import Header from "../../components/Headers/Header.jsx";
 import Notification from "../../components/Notification/Notification.jsx";
@@ -13,30 +13,21 @@ import Notification from "../../components/Notification/Notification.jsx";
 function Login() {
 
     const {register, handleSubmit} = useForm();
-    const {login} = useContext(AuthContext);
+    const {login, error, setError, loading} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
 
 
     async function handleFormSubmit(data) {
-        console.log('Login nu!', register)
-
         try {
-            const response = await axios.post('https://api.datavortex.nl/gardengenius/users/authenticate', {
-                "username": data.username,
-                "password": data.password
-
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-
-        login(response.data.jwt);
-        } catch (error) {
-            console.error('login fout: ', error);
-            setError('Login error');
-        }
+            const loginResult = await login(data.email, data.password);
+            if (loginResult.error) {
+              setError(loginResult.error.message); // Use setError from context
+            }
+          } catch (err) {
+            console.error("Login error:", err);
+            setError("An unexpected error occurred during login");
+          }
     }
 
     function handleNavigate(){
@@ -74,7 +65,7 @@ function Login() {
                         <div className="form-wrapper">
                             <form onSubmit={handleSubmit(handleFormSubmit)}>
                                 <div className="form-container">
-
+{/* 
                                     <label htmlFor="name-filed">
                                         Name
                                         <input
@@ -83,7 +74,7 @@ function Login() {
                                             placeholder="Enter your name"
                                             {...register("username")}
                                         />
-                                    </label>
+                                    </label> */}
                                     <label htmlFor="email-filed">
                                         Email
                                         <input
@@ -106,7 +97,9 @@ function Login() {
 
 
                                     <div className="btn-wrapper">
-                                        <Button type="submit" variant="alt">Login</Button>
+                                        <Button type="submit" variant="alt">
+                                            {loading ?"Logging in...": "Login"}
+                                            </Button>
                                     </div>
                                     <div className="register-wrapper">
                                         <p>If this is your first time, please </p>
