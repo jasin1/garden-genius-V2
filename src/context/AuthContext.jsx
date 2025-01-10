@@ -20,7 +20,28 @@ function AuthContextProvider({ children }) {
     };
     getUser();
 
-  },[]);
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null); // Set user whenever auth state changes
+
+      // If the user logs in, navigate them to the /search page
+      if (session?.user && window.location.pathname === "/login") {
+        navigate("/search");
+      } else if (
+        !session?.user &&
+        window.location.pathname !== "/login" &&
+        window.location.pathname !== "/"
+      ) {
+        navigate("/login"); // Redirect to login if no user and not on login/register page
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+
+  },[navigate]);
 
   async function login(email, password){
     setLoading(true);
