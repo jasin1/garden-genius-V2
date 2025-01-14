@@ -31,7 +31,8 @@ function AuthContextProvider({ children }) {
       } else if (
         !session?.user &&
         window.location.pathname !== "/login" &&
-        window.location.pathname !== "/"
+        window.location.pathname !== "/" &&
+        window.location.pathname !== "/confirmation" 
       ) {
         navigate("/login"); // Redirect to login if no user and not on login/register page
       }
@@ -82,7 +83,7 @@ function AuthContextProvider({ children }) {
           data: {
             username,
           },
-          emailRedirectTo: 'http://localhost:3000/search',
+          
         },
       });
 

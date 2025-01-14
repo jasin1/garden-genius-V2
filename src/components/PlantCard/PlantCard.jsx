@@ -1,31 +1,32 @@
 import './PlantCard.css';
 import {Link} from 'react-router-dom';
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState, useMemo} from "react";
 import placeholderImage from '../../assets/placeholder-plant.jpg';
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import {PlantContext} from '../../context/PlantContext.jsx';
-import {AuthContext} from "../../context/AuthContext.jsx";
+// import {AuthContext} from "../../context/AuthContext.jsx";
 
 
 function PlantCard({plantName, subName, image, id}) {
 
-    const {likePlant, unlikedPlant} = useContext(PlantContext);
-    const {Info} = useContext(AuthContext);
+    const {savePlant, removeSavedPlant, savedPlants} = useContext(PlantContext);
+    // const {Info} = useContext(AuthContext);
     const [isLiked, setIsLiked] = useState(false);
 
-    useEffect(() => {
+    const userPlantIds = useMemo(() => savedPlants.map((plant) => plant.id), [savedPlants]);
 
-        const userPlantIds = Info || [];
+    useEffect(() => {
         setIsLiked(userPlantIds.includes(id));
-    }, [Info, id]);
+    }, [userPlantIds, id]);
+    
+    
 
     const handleLikeClick = () => {
         if (!isLiked) {
-            likePlant(id);
+            savePlant(id);
         } else {
-            unlikedPlant(id);
+            removeSavedPlant(id);
         }
-        setIsLiked(!isLiked);
     }
 
 
@@ -51,6 +52,9 @@ function PlantCard({plantName, subName, image, id}) {
 
                             <p>
                                 {subName ? subName : 'No available sub name'}
+                            </p>
+                            <p>
+                                Plant id: {id}
                             </p>
                         </div>
 
