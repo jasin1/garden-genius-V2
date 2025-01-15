@@ -17,12 +17,12 @@ import Notification from "../../components/Notification/Notification.jsx";
 
 
 function PlantDetails() {
-    const {likedPlantIds, likePlant, unlikedPlant} = useContext(PlantContext);
+    const {savedPlants, savePlant, removeSavedPlant} = useContext(PlantContext);
     const {id} = useParams();
     const [plant, setPlant] = useState();
     const [error, setError] = useState(null);
     const numericId = parseInt(id, 10);
-    const isLiked = likedPlantIds.includes(numericId);
+    const isLiked = savedPlants.includes(numericId);
     const [buttonText, setButtonText] = useState(isLiked ? "Remove from collection" : "Add to collection");
     const navigate = useNavigate();
 
@@ -48,10 +48,10 @@ function PlantDetails() {
 
     const handleButtonClick = () => {
         if (isLiked) {
-            unlikedPlant(numericId);
+            removeSavedPlant(numericId);
             setButtonText("Add to collection");
         } else {
-            likePlant(numericId);
+            savePlant(numericId);
             setButtonText("Remove from collection");
         }
     }

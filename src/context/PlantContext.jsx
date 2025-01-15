@@ -16,87 +16,95 @@ function PlantContextProvider({ children }) {
       try {
         const { data, error } = await supabase
           .from("user_plants")
-          .select("plant_id")
+          .select("plants(*)") // Perform a join with the plants table
           .eq("user_id", user.id);
-
+    
         if (error) throw error;
-
-        const plantIds = data.map((item) => item.plant_id);
-
-        if (plantIds.length > 0) {
-          const { data: plants, error: plantsError } = await supabase
-            .from("plants")
-            .select("*")
-            .in("id", plantIds);
-
-          if (plantsError) throw plantsError;
-
-          setSavedPlants(plants);
-        } else {
-          setSavedPlants([]); 
-        }
+    
+        const plants = data.map((item) => item.plants); // Extract plants data from the result
+        setSavedPlants(plants);
       } catch (err) {
         console.error("Error fetching saved plants:", err);
+        // setError("Failed to load saved plants.");
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
+    
 
     fetchSavedPlants();
   }, [user]);
 
+  const savePlant = async (plant) => {
+    if (!user) return;
+    const { perenual_id, name } = plant;
 
-  const savePlant = async (plantId) => {
+    try {
+      const { data: existingPlant, error: plantCheckError } = await supabase
+        .from("plants")
+        .select("*")
+        .eq("perenual_id", perenual_id)
+        .single();
+
+
+
+      if (plantCheckError && plantCheckError.code !== "PGRST116") {
+        // Handle unexpected errors (PGRST116 = "No rows found")
+        throw plantCheckError;
+      }
+
+      // Step 2: Insert into plants table if it doesn't exist
+      if (!existingPlant) {
+        const { error: plantInsertError } = await supabase
+          .from("plants")
+          .insert([
+            {
+              perenual_id,
+              name,
+            },
+          ]);
+
+        if (plantInsertError) throw plantInsertError;
+      }
+
+      // Step 3: Insert into user_plants table
+      const { error: userPlantInsertError } = await supabase
+        .from("user_plants")
+        .insert([
+          {
+            user_id: user.id,
+            plant_id: perenual_id,
+          },
+        ]);
+
+      if (userPlantInsertError) throw userPlantInsertError;
+
+      console.log("Plant saved successfully!");
+    } catch (error) {
+      console.error("Error saving plant:", error.message);
+    }
+  };
+
+  const removeSavedPlant = async (plantId) => {
     if (!user) return;
 
     try {
-        const { data: existingPlant, error: checkError } = await supabase
-            .from("user_plants")
-            .select("id")
-            .eq("user_id", user.id)
-            .eq("plant_id", plantId)
-            .single();
+      const { error } = await supabase
+        .from("user_plants")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("plant_id", plantId);
 
-        if (checkError && checkError.code !== "PGRST116") throw checkError; // Ignore "no rows found" error
+      if (error) throw error;
 
-        if (existingPlant) {
-            console.log("Plant already saved");
-            return;
-        } else {
-            const { error } = await supabase
-                .from("user_plants")
-                .insert([{ user_id: user.id, plant_id: plantId, created_at: new Date() }]);
-
-            if (error) throw error;
-            console.log("Plant saved successfully");
-        }
+      setSavedPlants((prevPlants) =>
+        prevPlants.filter((plant) => plant.id !== plantId),
+      );
+      console.log("Plant removed from saved list");
     } catch (err) {
-        console.error("Error saving plant:", err);
+      console.error("Error removing saved plant:", err);
     }
-};
-
-
-const removeSavedPlant = async (plantId) => {
-    if (!user) return;
-
-    try {
-        const { error } = await supabase
-            .from("user_plants")
-            .delete()
-            .eq("user_id", user.id)
-            .eq("plant_id", plantId);
-
-        if (error) throw error;
-
-        setSavedPlants((prevPlants) =>
-            prevPlants.filter((plant) => plant.id !== plantId)
-        );
-        console.log("Plant removed from saved list");
-    } catch (err) {
-        console.error("Error removing saved plant:", err);
-    }
-};
-
+  };
 
   const data = {
     savedPlants,

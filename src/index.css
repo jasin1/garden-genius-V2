@@ -31,6 +31,10 @@
   color: var(--color-orange);
 }
 
+.font-bold{
+  font-weight: bold;
+}
+
 * {
   margin: 0;
   padding: 0;
