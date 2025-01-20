@@ -18,11 +18,13 @@ function PlantContextProvider({ children }) {
           .from("user_plants")
           .select("plants(*)") // Perform a join with the plants table
           .eq("user_id", user.id);
-    
+
         if (error) throw error;
-    
+
         const plants = data.map((item) => item.plants); // Extract plants data from the result
         setSavedPlants(plants);
+        // Sync with localStorage
+        localStorage.setItem("savedPlants", JSON.stringify(plants));
       } catch (err) {
         console.error("Error fetching saved plants:", err);
         // setError("Failed to load saved plants.");
@@ -30,7 +32,6 @@ function PlantContextProvider({ children }) {
         setLoading(false);
       }
     };
-    
 
     fetchSavedPlants();
   }, [user]);
@@ -40,13 +41,16 @@ function PlantContextProvider({ children }) {
     const { perenual_id, name } = plant;
 
     try {
+      // LocalStorage update for instant feedback
+      const updatedPlants = [...savedPlants, plant];
+      setSavedPlants(updatedPlants);
+      localStorage.setItem("savedPlants", JSON.stringify(updatedPlants));
+
       const { data: existingPlant, error: plantCheckError } = await supabase
         .from("plants")
         .select("*")
         .eq("perenual_id", perenual_id)
         .single();
-
-
 
       if (plantCheckError && plantCheckError.code !== "PGRST116") {
         // Handle unexpected errors (PGRST116 = "No rows found")
@@ -89,6 +93,11 @@ function PlantContextProvider({ children }) {
     if (!user) return;
 
     try {
+      // LocalStorage update for instant feedback
+      const updatedPlants = savedPlants.filter((plant) => plant.id !== plantId);
+      setSavedPlants(updatedPlants);
+      localStorage.setItem("savedPlants", JSON.stringify(updatedPlants));
+
       const { error } = await supabase
         .from("user_plants")
         .delete()
@@ -97,9 +106,9 @@ function PlantContextProvider({ children }) {
 
       if (error) throw error;
 
-      setSavedPlants((prevPlants) =>
-        prevPlants.filter((plant) => plant.id !== plantId),
-      );
+      // setSavedPlants((prevPlants) =>
+      //   prevPlants.filter((plant) => plant.id !== plantId),
+      // );
       console.log("Plant removed from saved list");
     } catch (err) {
       console.error("Error removing saved plant:", err);

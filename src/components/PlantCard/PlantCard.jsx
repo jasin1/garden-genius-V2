@@ -1,6 +1,6 @@
 import './PlantCard.css';
 import {Link} from 'react-router-dom';
-import {useContext, useEffect, useState, useMemo} from "react";
+import {useContext, useEffect, useState} from "react";
 import placeholderImage from '../../assets/placeholder-plant.jpg';
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import {PlantContext} from '../../context/PlantContext.jsx';
@@ -13,20 +13,29 @@ function PlantCard({plantName, subName, image, id}) {
     // const {Info} = useContext(AuthContext);
     const [isLiked, setIsLiked] = useState(false);
 
-    const userPlantIds = useMemo(() => savedPlants.map((plant) => plant.id), [savedPlants]);
+
 
     useEffect(() => {
-        setIsLiked(userPlantIds.includes(id));
-    }, [userPlantIds, id]);
+        console.log('Saved Plants:', savedPlants);
+        console.log('Plant ID:', id);
     
+        const isAlreadyLiked = savedPlants.some(plant => String(plant.perenual_id) === String(id));
+        console.log('Is Already Liked:', isAlreadyLiked);
+        setIsLiked(isAlreadyLiked);
+    }, [savedPlants, id]);
     
 
     const handleLikeClick = () => {
+        const plant ={
+            perenual_id: id,
+            name: plantName,
+        };
         if (!isLiked) {
-            savePlant(id);
+            savePlant(plant);
         } else {
             removeSavedPlant(id);
         }
+        setIsLiked(!isLiked);
     }
 
 

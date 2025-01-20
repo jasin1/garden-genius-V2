@@ -11,7 +11,7 @@ function Profile() {
     const { user } = useContext(AuthContext);
     const [numSavedPlants, setNumSavedPlants] = useState(0);
 
-    const userName = user ? user.username : null;
+    const userName = user ? user.user_metadata.username : null;
     const userEmail = user ? user.email : null;
 
     useEffect(() => {

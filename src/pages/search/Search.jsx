@@ -27,7 +27,7 @@ function Search() {
 
     const [selectedCountry, setSelectedCountry] = useState(null);
 
-    const {likedPlantIds} = useContext(PlantContext);
+    const {savedPlants} = useContext(PlantContext);
 
     const { user } = useContext(AuthContext);
 
@@ -55,7 +55,9 @@ function Search() {
 
         fetchData();
 
-    }, [likedPlantIds, selectedCountry, searchResults]);
+        console.log(savedPlants);
+
+    }, [savedPlants, selectedCountry, searchResults]);
 
 
     const handleSearch = async (searchTerm) => {
