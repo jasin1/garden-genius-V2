@@ -41,11 +41,6 @@ function PlantContextProvider({ children }) {
     const { perenual_id, name } = plant;
 
     try {
-      // LocalStorage update for instant feedback
-      const updatedPlants = [...savedPlants, plant];
-      setSavedPlants(updatedPlants);
-      localStorage.setItem("savedPlants", JSON.stringify(updatedPlants));
-
       const { data: existingPlant, error: plantCheckError } = await supabase
         .from("plants")
         .select("*")
@@ -83,6 +78,11 @@ function PlantContextProvider({ children }) {
 
       if (userPlantInsertError) throw userPlantInsertError;
 
+      // Update context and localStorage after all async operations succeed
+      const updatedPlants = [...savedPlants, plant];
+      setSavedPlants(updatedPlants);
+      localStorage.setItem("savedPlants", JSON.stringify(updatedPlants));
+
       console.log("Plant saved successfully!");
     } catch (error) {
       console.error("Error saving plant:", error.message);
@@ -91,6 +91,9 @@ function PlantContextProvider({ children }) {
 
   const removeSavedPlant = async (plantId) => {
     if (!user) return;
+
+    // Save the current state to rollback if needed
+    const previousPlants = [...savedPlants];
 
     try {
       // LocalStorage update for instant feedback
@@ -106,12 +109,14 @@ function PlantContextProvider({ children }) {
 
       if (error) throw error;
 
-      // setSavedPlants((prevPlants) =>
-      //   prevPlants.filter((plant) => plant.id !== plantId),
-      // );
+ 
       console.log("Plant removed from saved list");
     } catch (err) {
       console.error("Error removing saved plant:", err);
+
+      // Rollback the optimistic update
+      setSavedPlants(previousPlants);
+      localStorage.setItem("savedPlants", JSON.stringify(previousPlants));
     }
   };
 

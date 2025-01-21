@@ -55,7 +55,7 @@ function Search() {
 
         fetchData();
 
-        console.log(savedPlants);
+        // console.log(savedPlants);
 
     }, [savedPlants, selectedCountry, searchResults]);
 
