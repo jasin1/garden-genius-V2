@@ -13,16 +13,27 @@ function PlantCard({plantName, subName, image, id}) {
     // const {Info} = useContext(AuthContext);
     const [isLiked, setIsLiked] = useState(false);
 
-
-
     useEffect(() => {
-        console.log('Saved Plants:', savedPlants);
-        console.log('Plant ID:', id);
+        const isAlreadyLiked = savedPlants.some(
+            (plant) => String(plant.perenual_id) === String(id)
+        );
+        // Ensure `isLiked` is in sync with `savedPlants`
+        if (isLiked !== isAlreadyLiked) {
+            setIsLiked(isAlreadyLiked);
+        }
+    }, [savedPlants, id, isLiked]);
     
-        const isAlreadyLiked = savedPlants.some(plant => String(plant.perenual_id) === String(id));
-        console.log('Is Already Liked:', isAlreadyLiked);
-        setIsLiked(isAlreadyLiked);
-    }, [savedPlants, id]);
+
+
+
+    // useEffect(() => {
+    //     console.log('Saved Plants:', savedPlants);
+    //     console.log('Plant ID:', id);
+    
+    //     const isAlreadyLiked = savedPlants.some(plant => String(plant.perenual_id) === String(id));
+    //     console.log('Is Already Liked:', isAlreadyLiked);
+    //     setIsLiked(isAlreadyLiked);
+    // }, [savedPlants, id]);
     
 
     const handleLikeClick = () => {
@@ -30,10 +41,13 @@ function PlantCard({plantName, subName, image, id}) {
             perenual_id: id,
             name: plantName,
         };
-        if (!isLiked) {
-            savePlant(plant);
-        } else {
+
+        setIsLiked((prevLiked) => !prevLiked);
+
+        if (isLiked) {
             removeSavedPlant(id);
+        } else {    
+            savePlant(plant);
         }
         setIsLiked(!isLiked);
     }
@@ -62,9 +76,9 @@ function PlantCard({plantName, subName, image, id}) {
                             <p>
                                 {subName ? subName : 'No available sub name'}
                             </p>
-                            <p>
+                            {/* <p>
                                 Plant id: {id}
-                            </p>
+                            </p> */}
                         </div>
 
                     </div>
