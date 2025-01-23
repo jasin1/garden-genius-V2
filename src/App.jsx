@@ -18,7 +18,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Search/>}/>
                 <Route path="/search" element={<Search/>}/>
                 <Route path="/saved" element={<Saved/>}/>
                 <Route path="/profile" element={<Profile/>}/>
@@ -26,6 +26,7 @@ function App() {
                 <Route path="/plantdetail/:id" element={<PlantDetail/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/confirmation" element={<Confirmation/>}/>
+                <Route path="/register" element={<Home/>}/>
 
             </Routes>
 

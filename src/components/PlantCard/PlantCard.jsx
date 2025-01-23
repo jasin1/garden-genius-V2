@@ -4,10 +4,11 @@ import { useContext, useState } from "react";
 import placeholderImage from "../../assets/placeholder-plant.jpg";
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import { PlantContext } from "../../context/PlantContext.jsx";
-// import {AuthContext} from "../../context/AuthContext.jsx";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
-function PlantCard({ plantName, subName, image, id }) {
+function PlantCard({ plantName, subName, image, id, triggerModal }) {
   const { savePlant, removeSavedPlant, savedPlants } = useContext(PlantContext);
+  const { user } = useContext(AuthContext);
 
   const [isLiked, setIsLiked] = useState(() => {
     // Check if the plant is liked from the savedPlants context initially
@@ -17,6 +18,10 @@ function PlantCard({ plantName, subName, image, id }) {
   });
 
   const handleLikeClick = async () => {
+    if(!user){
+      console.log('user not logged in');
+      return;
+    }
     const plant = {
         perenual_id: id,
         name: plantName,
@@ -39,12 +44,19 @@ function PlantCard({ plantName, subName, image, id }) {
     }
 };
 
+const handleCardClick = (e) =>{
+  if(!user){
+    e.preventDefault();
+    triggerModal();
+  }
+}
+
   return (
     <div className="card-wrapper">
       <div className="plant-save">
         <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
       </div>
-      <Link to={`/plantdetail/${id}`} className="card-link">
+      <Link to={`/plantdetail/${id}`} className="card-link" onClick={handleCardClick}>
         <div className="card" key={id}>
           <div className="card-img-wrapper">
             {image ? (
