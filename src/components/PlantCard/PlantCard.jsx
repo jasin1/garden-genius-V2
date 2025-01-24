@@ -48,6 +48,7 @@ const handleCardClick = (e) =>{
   if(!user){
     e.preventDefault();
     triggerModal();
+    console.log("not logged in!")
   }
 }
 

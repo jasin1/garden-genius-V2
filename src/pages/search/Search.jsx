@@ -2,7 +2,6 @@ import "./search.css";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { PlantContext } from "../../context/PlantContext.jsx";
-
 import { AuthContext } from "../../context/AuthContext.jsx";
 
 import Navigation from "../../components/Navigation/Navigation.jsx";
@@ -14,7 +13,7 @@ import countries from "../../assets/countries.json";
 import Header from "../../components/Headers/Header.jsx";
 import Notification from "../../components/Notification/Notification.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
-// import {supabase} from "../../config/supabaseClient.js";
+import Spinner from "../../components/Spinner/Spinner.jsx";
 
 function Search() {
   // console.log(supabase);
@@ -28,6 +27,8 @@ function Search() {
   const { savedPlants } = useContext(PlantContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const { user } = useContext(AuthContext);
 
   const handleCountryChange = (countryName) => {
@@ -39,6 +40,7 @@ function Search() {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       try {
         const hardinessQuery = selectedCountry
           ? selectedCountry.zones.join(",")
@@ -52,15 +54,16 @@ function Search() {
       } catch (error) {
         console.error("Error fetching data: ", error.response.status);
         setError("Het ophalen van de data is mislukt!");
+      } finally {
+        setIsLoading(false);
       }
     }
 
     fetchData();
-
-    // console.log(savedPlants);
   }, [savedPlants, selectedCountry, searchResults]);
 
   const handleSearch = async (searchTerm) => {
+    setIsLoading(true);
     setIsSearching(!!searchTerm.trim());
     setInputSearch(searchTerm);
     try {
@@ -72,6 +75,8 @@ function Search() {
       setNoResults(searchResults.length === 0);
     } catch (error) {
       console.error("Error searching for plants:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -81,6 +86,7 @@ function Search() {
 
   const triggerModal = () => {
     setIsModalOpen(true);
+    console.log("Modal should open", isModalOpen);
   };
 
   const handleCloseModal = () => {
@@ -134,31 +140,32 @@ function Search() {
               )}
             </div>
             <div className="grid">
-              {error && <p>{error}</p>}
-              {searchResults.length > 0
-                ? searchResults.map((plant) => (
-                    <PlantCard
-                      key={plant.id}
-                      id={plant.id}
-                      plantName={plant.common_name}
-                      subName={plant.scientific_name.join(", ")}
-                      image={
-                        plant.default_image && plant.default_image.small_url
-                      }
-                    />
-                  ))
-                : data.map((plant) => (
-                    <PlantCard
-                      key={plant.id}
-                      id={plant.id}
-                      plantName={plant.common_name}
-                      subName={plant.scientific_name.join(", ")}
-                      image={
-                        plant.default_image && plant.default_image.small_url
-                      }
-                      triggerModal={triggerModal}
-                    />
-                  ))}
+              {isLoading ? (
+                <Spinner /> // Show the spinner while loading
+              ) : error ? (
+                <p>{error}</p>
+              ) : searchResults.length > 0 ? (
+                searchResults.map((plant) => (
+                  <PlantCard
+                    key={plant.id}
+                    id={plant.id}
+                    plantName={plant.common_name}
+                    subName={plant.scientific_name.join(", ")}
+                    image={plant.default_image && plant.default_image.small_url}
+                  />
+                ))
+              ) : (
+                data.map((plant) => (
+                  <PlantCard
+                    key={plant.id}
+                    id={plant.id}
+                    plantName={plant.common_name}
+                    subName={plant.scientific_name.join(", ")}
+                    image={plant.default_image && plant.default_image.small_url}
+                    triggerModal={triggerModal}
+                  />
+                ))
+              )}
             </div>
           </div>
         </section>

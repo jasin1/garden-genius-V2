@@ -13,6 +13,7 @@ function PlantContextProvider({ children }) {
     if (!user) return;
 
     const fetchSavedPlants = async () => {
+      setLoading(true);
       try {
         const { data, error } = await supabase
           .from("user_plants")

@@ -1,6 +1,5 @@
 import "./Modal.css";
 import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useContext, useState } from "react";
 import Header from "../../components/Headers/Header.jsx";
