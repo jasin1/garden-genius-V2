@@ -43,3 +43,10 @@
 .btn-container{
     margin-top: 1rem;
 }
+
+@media screen and (max-width: 900px){
+    .block-top{
+        flex-direction: column;
+    }
+
+}
