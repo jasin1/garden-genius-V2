@@ -32,8 +32,10 @@ function AuthContextProvider({ children }) {
       } else if (
         !session?.user &&
         window.location.pathname !== "/login" &&
+        window.location.pathname !== "/register" &&
         window.location.pathname !== "/" &&
         window.location.pathname !== "/search" &&
+        window.location.pathname !== "/onboarding" &&
         window.location.pathname !== "/confirmation"
       ) {
         navigate("/login"); // Redirect to login if no user and not on login/register page

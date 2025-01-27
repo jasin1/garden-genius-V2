@@ -30,6 +30,13 @@
 .color-orange{
   color: var(--color-orange);
 }
+.color-main-green{
+  color: var( --color-main-green);
+}
+
+.color-secondary-green{
+  color: var( --color-secondary-green);
+}
 
 .font-bold{
   font-weight: bold;
@@ -95,7 +102,15 @@ h2{
   margin-bottom: 1.5rem;
 }
 
+.icon-class{
+  display: block;
+  width: 1.2em; 
+  height: 1.2em; 
+  /* vertical-align: middle;  */
+  margin: 0;
+  padding: 0;
 
+}
 
 img {
   display: block;
@@ -133,6 +148,10 @@ button{
 .suggested{
   background: var(--color-light-green);
   padding: 3rem 4rem;
+}
+
+.flex-align-left{
+  align-items: start;
 }
 
 .grid{

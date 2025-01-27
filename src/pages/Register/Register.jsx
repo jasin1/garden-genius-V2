@@ -1,4 +1,4 @@
-import './home.css';
+import './Register.css';
 import whiteLogo from "../../assets/white-logo.svg";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
@@ -8,7 +8,7 @@ import Notification from "../../components/Notification/Notification.jsx";
 import {useState, useContext} from "react";
 
 
-function Home() {
+function Register() {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
     const { signUp } = useContext(AuthContext);
@@ -136,5 +136,5 @@ function Home() {
     );
 }
 
-export default Home;
+export default Register;
 

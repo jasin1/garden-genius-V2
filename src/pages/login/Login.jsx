@@ -31,7 +31,7 @@ function Login() {
     }
 
     function handleNavigate(){
-        navigate('/');
+        navigate('/register');
     }
 
     const handleCloseNotification = () =>{
