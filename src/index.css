@@ -187,7 +187,12 @@ button{
 
   .container{
     /* width: auto; */
-    margin: 1rem;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .suggested{
+    padding: 1rem;
   }
 
 
