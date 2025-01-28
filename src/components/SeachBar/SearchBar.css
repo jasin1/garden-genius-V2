@@ -28,6 +28,44 @@
     color: var(--color-gray);
 }
 
+.search-text {
+    display: inline;
+  }
+
+.search-icon {
+    display: none; 
+    width: 1.5rem; 
+    height: 1.5rem;
+  }
+
+
+@media (max-width: 600px) {
+    .indicator-txt-wrapper{
+        margin-left: 0;
+        padding-left: 0px;
+
+    }
+
+    .btn-search{
+        padding: .5rem .5rem;
+
+    }
+
+    .search-icon-wrapper{
+        display: none;
+    }
+
+    .search-text {
+      display: none; 
+    }
+  
+    .search-icon {
+      display: inline; 
+    }
+  }
+
+
+
 
 
 

@@ -2,6 +2,7 @@ import './SearchBar.css';
 import PropTypes from "prop-types";
 import {useState} from "react";
 import SearchIcon from '../../assets/icon-search.svg';
+import SearchIconWhite from '../../assets/icon-search-white.svg';
 import Button from '../../components/Button/Button.jsx';
 
 function SearchBar({onSearch, placeholder, initialValue}){
@@ -36,7 +37,10 @@ function SearchBar({onSearch, placeholder, initialValue}){
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
             />
-            <Button type="button" variant="search" onClick={handleSearch}> Search </Button>
+            <Button type="button" className="search-button" variant="search" onClick={handleSearch}> <span className="search-text">Search</span> 
+            <img src={SearchIconWhite} alt="Search Icon" className="search-icon" />
+            </Button>
+
         </div>
 
     )

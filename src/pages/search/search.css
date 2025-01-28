@@ -43,6 +43,9 @@
 }
 
 @media screen and (max-width: 576px){
+    .search-container{
+        display: block;
+    }
     .search-h1{
         font-size: 2.5rem;
     }
@@ -53,6 +56,7 @@
     }
 
     .search-header{
-        padding: 1.5rem;   
+        padding: 1.5rem;
+
     }
 }
