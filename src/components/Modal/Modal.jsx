@@ -48,15 +48,6 @@ function Modal({ onClose }) {
         <div className="form-wrapper">
           <form onSubmit={handleSubmit(handleFormSubmit)}>
             <div className="form-container">
-              <label htmlFor="name-filed">
-                Name
-                <input
-                  type="text"
-                  id="name-field"
-                  placeholder="Enter your name"
-                  {...register("username")}
-                />
-              </label>
               <label htmlFor="email-filed">
                 Email
                 <input
