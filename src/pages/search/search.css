@@ -41,3 +41,14 @@
 .indicator-txt-wrapper span{
     font-weight: bold;
 }
+
+@media screen and (max-width: 576px){
+    .search-h1{
+        font-size: 2.5rem;
+    }
+
+    .indicator-header{
+        flex-direction: column;
+        margin-bottom: 1.2rem;
+    }
+}
