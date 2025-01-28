@@ -17,18 +17,16 @@ function PlantContextProvider({ children }) {
       try {
         const { data, error } = await supabase
           .from("user_plants")
-          .select("plants(*)") // Perform a join with the plants table
+          .select("plants(*)")
           .eq("user_id", user.id);
 
         if (error) throw error;
 
-        const plants = data.map((item) => item.plants); // Extract plants data from the result
+        const plants = data.map((item) => item.plants);
         setSavedPlants(plants);
-        // Sync with localStorage
         localStorage.setItem("savedPlants", JSON.stringify(plants));
       } catch (err) {
         console.error("Error fetching saved plants:", err);
-        // setError("Failed to load saved plants.");
       } finally {
         setLoading(false);
       }
@@ -49,11 +47,9 @@ function PlantContextProvider({ children }) {
         .single();
 
       if (plantCheckError && plantCheckError.code !== "PGRST116") {
-        // Handle unexpected errors (PGRST116 = "No rows found")
         throw plantCheckError;
       }
 
-      // Step 2: Insert into plants table if it doesn't exist
       if (!existingPlant) {
         const { error: plantInsertError } = await supabase
           .from("plants")
@@ -67,7 +63,6 @@ function PlantContextProvider({ children }) {
         if (plantInsertError) throw plantInsertError;
       }
 
-      // Step 3: Insert into user_plants table
       const { error: userPlantInsertError } = await supabase
         .from("user_plants")
         .insert([
@@ -78,8 +73,6 @@ function PlantContextProvider({ children }) {
         ]);
 
       if (userPlantInsertError) throw userPlantInsertError;
-
-      // Update context and localStorage after all async operations succeed
       const updatedPlants = [...savedPlants, plant];
       setSavedPlants(updatedPlants);
       localStorage.setItem("savedPlants", JSON.stringify(updatedPlants));
@@ -92,12 +85,9 @@ function PlantContextProvider({ children }) {
 
   const removeSavedPlant = async (plantId) => {
     if (!user) return;
-
-    // Save the current state to rollback if needed
     const previousPlants = [...savedPlants];
 
     try {
-      // LocalStorage update for instant feedback
       const updatedPlants = savedPlants.filter((plant) => plant.id !== plantId);
       setSavedPlants(updatedPlants);
       localStorage.setItem("savedPlants", JSON.stringify(updatedPlants));
@@ -110,12 +100,9 @@ function PlantContextProvider({ children }) {
 
       if (error) throw error;
 
- 
       console.log("Plant removed from saved list");
     } catch (err) {
       console.error("Error removing saved plant:", err);
-
-      // Rollback the optimistic update
       setSavedPlants(previousPlants);
       localStorage.setItem("savedPlants", JSON.stringify(previousPlants));
     }

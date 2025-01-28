@@ -24,9 +24,7 @@ function AuthContextProvider({ children }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null); // Set user whenever auth state changes
-
-      // If the user logs in, navigate them to the /search page
+      setUser(session?.user || null);
       if (session?.user && window.location.pathname === "/login") {
         navigate("/search");
       } else if (
@@ -38,7 +36,7 @@ function AuthContextProvider({ children }) {
         window.location.pathname !== "/onboarding" &&
         window.location.pathname !== "/confirmation"
       ) {
-        navigate("/login"); // Redirect to login if no user and not on login/register page
+        navigate("/login");
       }
     });
 
@@ -92,7 +90,6 @@ function AuthContextProvider({ children }) {
       if (error) {
         console.error("Sign-up error:", error.message);
         setError(error.message);
-        // Optionally: Show the error message to the user
         return error;
       }
 

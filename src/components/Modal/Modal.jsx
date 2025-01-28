@@ -12,19 +12,17 @@ function Modal({ onClose }) {
     formState: { errors },
   } = useForm();
   const { login } = useContext(AuthContext);
-  // const navigate = useNavigate();
   const [error, setError] = useState(null);
 
   async function handleFormSubmit(data) {
     try {
-      // Call login from AuthContext which handles Supabase login internally
       const response = await login(data.email, data.password);
       console.log("Login Response:", response);
       if (response?.error) {
-        setError(response.error.message || "login failed"); // Show error if any
+        setError(response.error.message || "login failed"); 
       } else {
         console.log("Login successful:", response);
-        onClose(); // Redirect to homepage after successful login
+        onClose(); 
       }
     } catch (error) {
       console.error("Login error: ", error);

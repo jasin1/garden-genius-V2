@@ -17,23 +17,16 @@ function Profile() {
   const userEmail = user ? user.email : null;
 
   useEffect(() => {
-    console.log("saved plants ", savedPlants);
     setNumSavedPlants(savedPlants.length);
 
-    // if (user && user.info) {
-    //   const userInfo = JSON.parse(user.info);
-    //   setNumSavedPlants(userInfo.length);
-    // } else {
-    //   setNumSavedPlants(0);
-    // }
   }, [user, savedPlants]);
 
   function sendEmail() {
     const emailLink =
       "mailto:jasin.tairaidrissi@gmail.com?subject=Feedback from Garden Genius";
-    const newTab = window.open(); // Open a new tab
+    const newTab = window.open(); 
     if (newTab) {
-      newTab.location.href = emailLink; // Redirect the new tab to the mailto link
+      newTab.location.href = emailLink; 
     } else {
       alert(
         "Unable to open a new tab. Please check your popup blocker settings.",

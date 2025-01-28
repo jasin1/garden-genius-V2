@@ -20,7 +20,6 @@ function Register() {
         console.log("Form Data:", data); 
 
         try {
-            // Call the signUp function from AuthContext
             const result = await signUp(data.username, data.email, data.password);
 
             if (result.error) {
@@ -28,7 +27,6 @@ function Register() {
                 setError(result.error.message || 'Something went wrong. Please try again.');
             } 
             if(!result.error) {
-                console.log("Signup successful:", result);
                 setSuccess(true);
                 navigate('/confirmation')
             }

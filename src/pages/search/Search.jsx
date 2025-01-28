@@ -16,7 +16,6 @@ import Modal from "../../components/Modal/Modal.jsx";
 import Spinner from "../../components/Spinner/Spinner.jsx";
 
 function Search() {
-  // console.log(supabase);
   const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState("");
@@ -141,7 +140,7 @@ function Search() {
             </div>
             <div className="grid">
               {isLoading ? (
-                <Spinner /> // Show the spinner while loading
+                <Spinner />
               ) : error ? (
                 <p>{error}</p>
               ) : searchResults.length > 0 ? (

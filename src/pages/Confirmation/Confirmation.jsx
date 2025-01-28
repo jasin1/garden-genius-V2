@@ -13,14 +13,10 @@ function Confirmation() {
       const token = urlParams.get("token");
 
       if (token) {
-        const { data, error } = await supabase.auth.verifyOtp({ token });
+        const { error } = await supabase.auth.verifyOtp({ token });
         if (error) {
           console.error("Error during email verification:", error.message);
-        } else {
-          console.log("Email verified, user logged in:", data);
         }
-      } else {
-        console.log("No token found in URL");
       }
     }
 
@@ -36,10 +32,17 @@ function Confirmation() {
               <div className="icon-wrapper">
                 <img src={emailIcon} alt="GardenGenius main logo" />
               </div>
-                <h1 className="color-orange">Just one more step...</h1>
+              <h1 className="color-orange">Just one more step...</h1>
               <div className="header-txt">
-                Thank you for signing up <span className="font-bold">{user.user_metadata.username}</span> , Please verify your email address, we&#39;ve sent a confirmation email to: <span className="confirm-highlight-txt">{user.email}</span><br/><br/>
-                After receiving the email follow the link provided to complete your registration.               
+                Thank you for signing up{" "}
+                <span className="font-bold">{user.user_metadata.username}</span>{" "}
+                , Please verify your email address, we&#39;ve sent a
+                confirmation email to:{" "}
+                <span className="confirm-highlight-txt">{user.email}</span>
+                <br />
+                <br />
+                After receiving the email follow the link provided to complete
+                your registration.
               </div>
             </div>
           </div>
