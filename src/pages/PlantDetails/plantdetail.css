@@ -123,6 +123,7 @@
 
     .plant-features{
         align-items: start;
+        /* flex-direction: column; */
     }
 
 }

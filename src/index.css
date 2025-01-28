@@ -186,7 +186,7 @@ button{
   }
 
   .container{
-    width: auto;
+    /* width: auto; */
     margin: 1rem;
   }
 
