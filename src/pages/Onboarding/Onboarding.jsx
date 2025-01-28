@@ -28,7 +28,7 @@ function onboarding() {
                         <div className="onboarding-content">
                             <p>With our user-friendly interface and comprehensive plant database, you can effortlessly
                                 discover
-                                the perfect plants for your garden based on your location and the current season. Say
+                                the perfect plants for your garden based on your location. Say
                                 goodbye to
                                 guesswork and hello to thriving greenery!<br/><br/>
 
