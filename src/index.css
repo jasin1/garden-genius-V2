@@ -173,6 +173,10 @@ button{
   z-index: 1000;
 }
 
+.hide-element{
+  display: none;
+}
+
 
 /*------------media queries-------------*/
 
