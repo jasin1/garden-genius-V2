@@ -103,6 +103,9 @@ nav{
 
 
 @media screen and (max-width: 768px){
+    .main-logo{
+        width: 180px;
+    }
 
     nav{
         padding: 1rem 1rem;

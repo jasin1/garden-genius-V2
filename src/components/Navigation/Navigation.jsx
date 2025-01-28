@@ -41,7 +41,7 @@ function Navigation() {
     return (
         <nav>
             <div className="nav-logo-wrapper">
-                <NavLink to="/search" className={(isActive)=>"navActive" + (!isActive ? "nav-link" : "")}><img src={logo} alt="GardenGenius Logo"/></NavLink>
+                <NavLink to="/search" className={(isActive)=>"navActive" + (!isActive ? "nav-link" : "")}><img src={logo} alt="GardenGenius Logo" className="main-logo"/></NavLink>
             </div>
             <ul className={`nav-links ${showMenu ? 'active': ''}`}>
                 <li>
