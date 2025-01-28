@@ -185,6 +185,11 @@ button{
     font-size: 18px;
   }
 
+  .container{
+    width: auto;
+    margin: 1rem;
+  }
+
 
 
   h1 {
