@@ -79,7 +79,7 @@ function PlantDetails() {
                   <Arrow pathClassName="svg-path-color" />
                   Back
                 </Button>
-                <div className="hide-element">
+                <div>
                   <Button
                     type="button"
                     variant={isLiked ? "grey" : "orange"}
